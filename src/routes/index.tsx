@@ -163,13 +163,12 @@ function Home() {
           <div className="rounded-2xl border border-border/60 bg-card p-8 md:p-12">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">Where we are today</p>
             <h2 className="mt-3 font-display text-3xl tracking-tight md:text-4xl">
-              The spine is published. The lessons are being authored.
+              Stage 1 is fully authored. Twelve more to go.
             </h2>
             <p className="mt-4 max-w-3xl text-muted-foreground leading-relaxed">
-              Every stage, module, and lesson title on this site is authoritative — this
-              is the curriculum we are actually building. What you cannot read yet are the
-              full lesson bodies. We would rather show you the honest shape of the
-              journey than fake progress with placeholder content.
+              All 27 lessons in Stage 1 — Orientation, AI Literacy, and Digital Foundations — are
+              live, with interactive experiments and knowledge checks. Stages 2 through 12 exist
+              as the authoritative spine; lesson bodies are being written in the open.
             </p>
             <div className="mt-6">
               <Link

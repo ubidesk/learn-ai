@@ -31,6 +31,7 @@ export type InteractiveKey =
   // Stage 1 — Orientation
   | "ai-family-tree"
   | "rules-vs-ml-vs-dl"
+  | "approach-tradeoff-lab"
   | "narrow-vs-general"
   | "ai-history-timeline"
   | "hype-vs-reality"

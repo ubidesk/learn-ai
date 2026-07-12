@@ -83,6 +83,220 @@ function RulesVsMlVsDl() {
   );
 }
 
+type ApproachId = "rules" | "ml" | "dl";
+const APPROACHES: { id: ApproachId; label: string; tagline: string }[] = [
+  { id: "rules", label: "Rules-based", tagline: "Logic a human writes by hand" },
+  { id: "ml", label: "Classical ML", tagline: "A small formula fit to examples" },
+  { id: "dl", label: "Deep learning", tagline: "A layered network with millions+ of parameters" },
+];
+const DIMENSIONS: { key: string; label: string; values: Record<ApproachId, string> }[] = [
+  {
+    key: "logic",
+    label: "How the logic is created",
+    values: {
+      rules: "An engineer writes every branch and threshold by hand.",
+      ml: "An algorithm tunes a small set of weights so the formula fits labelled examples.",
+      dl: "An algorithm tunes millions or billions of weights across many layers to fit huge datasets.",
+    },
+  },
+  {
+    key: "data",
+    label: "Training data required?",
+    values: {
+      rules: "None. Behaviour comes entirely from human-written rules.",
+      ml: "Yes — a modest, labelled dataset (thousands to millions of rows).",
+      dl: "Yes — very large datasets (often billions of examples for foundation models).",
+    },
+  },
+  {
+    key: "interp",
+    label: "Interpretability",
+    values: {
+      rules: "High. You can read every rule and predict what the system will do.",
+      ml: "Medium. Per-feature weights are inspectable; a domain expert can audit them.",
+      dl: "Low. Behaviour is spread across billions of numbers; explanations are approximate.",
+    },
+  },
+  {
+    key: "adapt",
+    label: "Adaptability to new cases",
+    values: {
+      rules: "Poor. Any case the author didn't foresee falls through the cracks.",
+      ml: "Decent within the same distribution; degrades on genuinely new patterns.",
+      dl: "Strong on messy, high-dimensional inputs; still brittle far outside training data.",
+    },
+  },
+  {
+    key: "cost",
+    label: "Compute & data cost",
+    values: {
+      rules: "Tiny. Runs on a microcontroller; no training pipeline.",
+      ml: "Modest. Trains on a laptop or a single server in minutes to hours.",
+      dl: "Large to enormous. GPUs/TPUs, days to months of training, big data pipelines.",
+    },
+  },
+  {
+    key: "example",
+    label: "Representative real-world example",
+    values: {
+      rules: "Thermostat firmware, tax-form validators, chess opening books.",
+      ml: "Credit scoring, spam filters with per-word weights, churn prediction.",
+      dl: "GPT-style chatbots, image generators, speech recognition, self-driving perception.",
+    },
+  },
+  {
+    key: "fail",
+    label: "Likely failure mode",
+    values: {
+      rules: "A situation the author never imagined — silent wrong answer or crash.",
+      ml: "Distribution shift: the world changes and last year's weights no longer fit.",
+      dl: "Confident hallucinations and hidden bias absorbed from training data.",
+    },
+  },
+];
+
+const DECISION_TASKS: {
+  id: string;
+  prompt: string;
+  correct: ApproachId;
+  perApproach: Record<ApproachId, string>;
+}[] = [
+  {
+    id: "thermostat",
+    prompt: "A home thermostat that switches the heater on when the temperature drops below the setpoint.",
+    correct: "rules",
+    perApproach: {
+      rules: "Right fit. One if/else rule runs on a tiny chip, is fully inspectable, and cannot 'hallucinate' a heater command.",
+      ml: "Overkill. You'd need labelled data for a problem a single threshold already solves.",
+      dl: "Wildly overkill. A neural network to compare two numbers wastes compute and adds an opaque failure mode to a safety-adjacent device.",
+    },
+  },
+  {
+    id: "credit",
+    prompt: "A credit-scoring model a regulator can audit line-by-line to justify each decision.",
+    correct: "ml",
+    perApproach: {
+      rules: "Auditable, but rules can't learn from historical repayment data — you'd underfit and encode the author's guesses.",
+      ml: "Right fit. Logistic regression or a small gradient-boosted model gives per-feature weights a regulator can inspect while still learning from data.",
+      dl: "Powerful but hard to justify per decision — a bad match where 'explain this rejection' is a legal requirement.",
+    },
+  },
+  {
+    id: "imagegen",
+    prompt: "A tool that generates a photorealistic image of a golden retriever wearing sunglasses from a text prompt.",
+    correct: "dl",
+    perApproach: {
+      rules: "Impossible. No one can hand-author rules that paint arbitrary photorealistic images.",
+      ml: "Classical ML can't model the joint distribution of pixels at the scale photorealism requires.",
+      dl: "Right fit. This is exactly what large diffusion / transformer image models were built for.",
+    },
+  },
+];
+
+function ApproachTradeoffLab() {
+  const [tab, setTab] = useState<ApproachId>("rules");
+  const [picks, setPicks] = useState<Record<string, ApproachId>>({});
+  const answered = Object.keys(picks).length;
+  return (
+    <InteractiveShell title="Approach trade-off lab">
+      <div className="space-y-6">
+        <div>
+          <div role="tablist" aria-label="Approach" className="flex flex-wrap gap-2">
+            {APPROACHES.map((a) => {
+              const active = tab === a.id;
+              return (
+                <button
+                  key={a.id}
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => setTab(a.id)}
+                  className={
+                    "rounded-md border px-3 py-1.5 text-xs font-medium transition-colors " +
+                    (active
+                      ? "border-accent bg-accent/15 text-accent-foreground"
+                      : "border-border/60 bg-background text-muted-foreground hover:text-foreground")
+                  }
+                >
+                  {a.label}
+                </button>
+              );
+            })}
+          </div>
+          <p className="mt-2 text-xs text-muted-foreground">
+            {APPROACHES.find((a) => a.id === tab)?.tagline}
+          </p>
+          <dl className="mt-4 grid gap-3 md:grid-cols-2">
+            {DIMENSIONS.map((d) => (
+              <div key={d.key} className="rounded-lg border border-border/60 bg-background p-4">
+                <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+                  {d.label}
+                </dt>
+                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {d.values[tab]}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <div className="rounded-lg border border-border/60 bg-background p-4">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+            Decision task · pick an approach for each
+          </p>
+          <ol className="mt-3 space-y-4">
+            {DECISION_TASKS.map((t) => {
+              const picked = picks[t.id];
+              const isRight = picked === t.correct;
+              return (
+                <li key={t.id} className="space-y-2">
+                  <p className="text-sm">{t.prompt}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {APPROACHES.map((a) => {
+                      const active = picked === a.id;
+                      return (
+                        <button
+                          key={a.id}
+                          onClick={() => setPicks((p) => ({ ...p, [t.id]: a.id }))}
+                          className={
+                            "rounded-md border px-3 py-1.5 text-xs font-medium transition-colors " +
+                            (active
+                              ? isRight
+                                ? "border-highlight/60 bg-highlight/15 text-highlight-foreground"
+                                : "border-destructive/60 bg-destructive/10 text-destructive"
+                              : "border-border/60 bg-background text-muted-foreground hover:text-foreground")
+                          }
+                        >
+                          {a.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {picked && (
+                    <p
+                      className={
+                        "text-xs leading-relaxed " +
+                        (isRight ? "text-highlight-foreground" : "text-muted-foreground")
+                      }
+                    >
+                      <span className="font-mono">{isRight ? "✓ Best fit. " : "Trade-off. "}</span>
+                      {t.perApproach[picked]}
+                    </p>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+          <p className="mt-3 text-[11px] text-muted-foreground">
+            {answered}/{DECISION_TASKS.length} answered. There is often more than one workable answer — the feedback names the trade-off.
+          </p>
+        </div>
+      </div>
+    </InteractiveShell>
+  );
+}
+
+
+
 function NarrowVsGeneral() {
   return (
     <InteractiveShell title="Narrow vs general — try the toggle">
@@ -1087,6 +1301,7 @@ import { computersRegistry } from "./interactives-computers";
 const orientationRegistry: Partial<Record<InteractiveKey, ComponentType>> = {
   "ai-family-tree": AiFamilyTree,
   "rules-vs-ml-vs-dl": RulesVsMlVsDl,
+  "approach-tradeoff-lab": ApproachTradeoffLab,
   "narrow-vs-general": NarrowVsGeneral,
   "ai-history-timeline": AiHistoryTimeline,
   "hype-vs-reality": HypeVsReality,

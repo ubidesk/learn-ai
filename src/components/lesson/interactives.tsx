@@ -293,6 +293,9 @@ function ApproachTradeoffLab() {
       </div>
     </InteractiveShell>
   );
+}
+
+
 
 function NarrowVsGeneral() {
   return (

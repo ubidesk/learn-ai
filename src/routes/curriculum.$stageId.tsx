@@ -54,7 +54,7 @@ function StageNotFound() {
 }
 
 function StageDetail() {
-  const { stage } = Route.useLoaderData();
+  const { stage } = Route.useLoaderData() as { stage: Stage };
   const previous = stages.find((s) => s.order === stage.order - 1);
   const next = stages.find((s) => s.order === stage.order + 1);
 

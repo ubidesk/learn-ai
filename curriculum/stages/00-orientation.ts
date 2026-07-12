@@ -1,213 +1,113 @@
-import type { Stage } from "../schema";
+import type { Stage, Lesson } from "../schema";
+
+const S = "planned" as const;
+const E = "30–45 min";
+const L = (id: string, order: number, title: string, outcome: string, effort = E): Lesson => ({
+  id, order, title, outcome, effort, status: S,
+});
 
 export const stage: Stage = {
   id: "orientation",
   order: 0,
   title: "Orientation, AI Literacy, and Digital Foundations",
   purpose:
-    "Give a complete beginner an honest map of AI, of how modern computers and the web actually work at a conceptual level, and of how to learn a technical subject well without prior programming or math background.",
+    "Give a complete beginner an honest map of AI, of how modern computers work at a conceptual level, and of how to learn a technical subject well without prior programming or math background.",
   startingLevel:
-    "You have never written code. You are unsure what AI actually is versus what marketing claims. You are comfortable using a phone or laptop for everyday tasks.",
+    "You have never written code. You use a phone and a laptop for everyday tasks but you do not know what an operating system, a shell, or an API is.",
   prerequisites: [],
   project: {
-    title: "Personal Learning Map",
+    title: "Personal Learning Map and First AI Experiment",
     description:
-      "Produce a written learning map describing your goals, honest starting level, a 12-week study plan across the five learning verbs (Learn, Visualize, Practice, Build, Reflect), and how you will notice when you are confused.",
+      "Produce a written learning map — your goals, honest starting level, a 12-week study plan across Learn, Visualize, Practice, Build, Reflect — and pair it with a short log of your first hands-on chat with an AI system, noting where it helped and where it misled you.",
   },
   exitCriteria: [
-    "Explain in plain English what AI, machine learning, and deep learning are, and how they relate.",
-    "Describe the difference between narrow AI, general intelligence claims, and current systems.",
-    "Explain what a computer program is and why we need programming languages.",
-    "Follow a structured study plan and track your own progress honestly.",
-    "Use a browser, files, and the internet with intent (not just habit).",
+    "Explain in plain English what AI, machine learning, and deep learning are and how they relate.",
+    "Distinguish narrow AI systems, general-intelligence claims, and current model capabilities.",
+    "Describe what a computer program is and why we need programming languages.",
+    "Follow a structured study plan and notice your own confusion.",
+    "Use an AI assistant to accelerate your learning without being fooled by it.",
   ],
-  status: "planned",
+  status: S,
   modules: [
     {
-      id: "orientation-ai-literacy",
+      id: "orientation-what-ai-is",
       order: 1,
-      title: "What AI Actually Is",
+      title: "What AI Is and Is Not",
       summary:
-        "Build honest intuition for what AI systems do, what they do not do, and how today's landscape emerged.",
+        "Honest intuition for what AI systems actually do, how ML, deep learning, and rules-based software differ, and what today's models can and cannot do.",
       lessons: [
-        {
-          id: "orientation-ai-literacy-what-is-ai",
-          order: 1,
-          title: "What Is AI, Really?",
-          outcome:
-            "Distinguish AI, machine learning, deep learning, and rules-based software in plain English.",
-          effort: "30–45 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-ai-literacy-history",
-          order: 2,
-          title: "A Short, Honest History of AI",
-          outcome:
-            "Sketch how symbolic AI, statistical learning, and modern deep learning built on one another.",
-          effort: "30–45 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-ai-literacy-landscape",
-          order: 3,
-          title: "The AI Landscape Today",
-          outcome:
-            "Name the major categories of modern AI systems and give a concrete example of each.",
-          effort: "30–45 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-ai-literacy-hype-vs-reality",
-          order: 4,
-          title: "Hype, Fear, and What Is Actually True",
-          outcome:
-            "Evaluate common AI claims against what current systems demonstrably do and do not do.",
-          effort: "45–60 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-ai-literacy-ethics-intro",
-          order: 5,
-          title: "Why Responsible AI Starts on Day One",
-          outcome:
-            "Explain why bias, misuse, and safety are engineering concerns, not afterthoughts.",
-          effort: "30–45 min",
-          status: "planned",
-        },
+        L("orientation-what-ai-is-what-is-ai", 1, "What Is AI, Really?", "Distinguish AI, machine learning, deep learning, and rules-based software in plain English."),
+        L("orientation-what-ai-is-ml-vs-dl-vs-rules", 2, "Rules, Learning, and Deep Learning", "Give a concrete example of a rules-based system, a classical ML system, and a deep-learning system."),
+        L("orientation-what-ai-is-narrow-vs-general", 3, "Narrow AI vs General Intelligence", "Explain why today's systems are narrow, and what claims about AGI mean and don't mean."),
+        L("orientation-what-ai-is-history", 4, "A Short, Honest History of AI", "Sketch how symbolic AI, statistical learning, and modern deep learning built on one another."),
+        L("orientation-what-ai-is-hype-vs-reality", 5, "Hype, Fear, and What Is Actually True", "Evaluate common AI claims against what current systems demonstrably do and do not do."),
+      ],
+    },
+    {
+      id: "orientation-modern-landscape",
+      order: 2,
+      title: "The Modern AI Landscape",
+      summary:
+        "A tour of the categories of AI systems in production today — what they are for, where they excel, and where they fail.",
+      lessons: [
+        L("orientation-modern-landscape-categories", 1, "Categories of AI Today", "Name the major categories of modern AI systems and give a concrete example of each."),
+        L("orientation-modern-landscape-foundation-models", 2, "Foundation Models Explained Simply", "Explain what a foundation model is and why the same model can be adapted to many tasks."),
+        L("orientation-modern-landscape-generative-vs-predictive", 3, "Generative vs Predictive AI", "Distinguish generative and predictive systems and give an example of each in daily life."),
+        L("orientation-modern-landscape-agents-and-tools", 4, "Agents, Tools, and Multi-Step AI", "Describe what an AI agent is and why calling tools changes what these systems can do."),
+        L("orientation-modern-landscape-use-and-limits", 5, "Where AI Works and Where It Breaks", "Predict, for a given task, whether current AI is likely to help, mislead, or fail outright."),
+      ],
+    },
+    {
+      id: "orientation-how-to-learn",
+      order: 3,
+      title: "How to Learn Technical Subjects",
+      summary:
+        "The study habits and metacognitive skills that separate learners who finish this curriculum from learners who stall.",
+      lessons: [
+        L("orientation-how-to-learn-science", 1, "The Learning Science That Actually Works", "Explain retrieval, spacing, interleaving, worked examples, and reflection in plain English."),
+        L("orientation-how-to-learn-retrieval-spacing", 2, "Retrieval and Spacing in Your Own Study", "Build a personal retrieval and spacing routine you can sustain for weeks."),
+        L("orientation-how-to-learn-notice-confusion", 3, "How to Notice Confusion Early", "Use specific cues to catch confusion before it compounds across lessons."),
+        L("orientation-how-to-learn-ai-tutors", 4, "Using AI Tutors Without Being Fooled", "Use LLM tutors to accelerate learning while cross-checking confident-sounding errors."),
+        L("orientation-how-to-learn-study-plan", 5, "Designing Your Study Plan", "Build a realistic weekly plan across Learn-Visualize-Practice-Build-Reflect.", "45–60 min"),
       ],
     },
     {
       id: "orientation-digital-foundations",
-      order: 2,
+      order: 4,
       title: "Digital Foundations",
       summary:
-        "Learn what a computer, a program, and the internet actually are at a conceptual level — the mental models programming will refine later.",
+        "Conceptual mental models for what a computer, a program, the internet, and data actually are — the ideas the rest of the curriculum will refine.",
       lessons: [
-        {
-          id: "orientation-digital-foundations-what-is-computer",
-          order: 1,
-          title: "What Is a Computer?",
-          outcome:
-            "Describe a computer as an input-process-output machine that runs instructions on data.",
-          effort: "30–45 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-digital-foundations-what-is-program",
-          order: 2,
-          title: "What Is a Program?",
-          outcome:
-            "Explain why we write programs in languages, and what happens between source code and execution.",
-          effort: "30–45 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-digital-foundations-internet-basics",
-          order: 3,
-          title: "What Is the Internet, Really?",
-          outcome:
-            "Trace, at a conceptual level, what happens when you open a website.",
-          effort: "30–45 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-digital-foundations-data-around-us",
-          order: 4,
-          title: "Data Is Everywhere",
-          outcome:
-            "Recognise where data comes from, what forms it takes, and why AI depends on it.",
-          effort: "30–45 min",
-          status: "planned",
-        },
+        L("orientation-digital-foundations-what-is-computer", 1, "What Is a Computer?", "Describe a computer as an input-process-output machine that runs instructions on data."),
+        L("orientation-digital-foundations-what-is-program", 2, "What Is a Program?", "Explain why we write programs in languages and what happens between source and execution."),
+        L("orientation-digital-foundations-internet", 3, "What Is the Internet, Really?", "Trace, at a conceptual level, what happens when you open a website."),
+        L("orientation-digital-foundations-data", 4, "Data Is Everywhere", "Recognise where data comes from, what forms it takes, and why AI depends on it."),
       ],
     },
     {
-      id: "orientation-learning-well",
-      order: 3,
-      title: "Learning to Learn",
+      id: "orientation-workspace",
+      order: 5,
+      title: "Developer Workspace Orientation",
       summary:
-        "Adopt the study habits and metacognitive skills that separate learners who finish from learners who stall.",
+        "The everyday tools you already touch — browsers, files, accounts — treated with intent, plus a preview of the developer tools you will meet.",
       lessons: [
-        {
-          id: "orientation-learning-well-how-to-learn",
-          order: 1,
-          title: "How to Learn a Technical Subject Well",
-          outcome:
-            "Apply retrieval, spacing, worked examples, and reflection to your own study.",
-          effort: "45–60 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-learning-well-notice-confusion",
-          order: 2,
-          title: "How to Notice Confusion",
-          outcome:
-            "Use specific cues to catch confusion early and repair it before it compounds.",
-          effort: "30–45 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-learning-well-ai-assisted",
-          order: 3,
-          title: "Using AI Tools to Learn Without Being Fooled",
-          outcome:
-            "Use LLM tutors to accelerate learning while defending against confident-sounding errors.",
-          effort: "30–45 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-learning-well-study-plan",
-          order: 4,
-          title: "Designing Your Own Study Plan",
-          outcome: "Build a realistic weekly plan using the Learn-Visualize-Practice-Build-Reflect rhythm.",
-          effort: "45–60 min",
-          status: "planned",
-        },
+        L("orientation-workspace-browsers", 1, "Browsers, Tabs, and Search With Intent", "Use a browser as a research tool, including bookmarks, tabs, and searching primary sources."),
+        L("orientation-workspace-files-and-cloud", 2, "Files, Folders, and Cloud Sync", "Organise your working files locally and in the cloud without losing work."),
+        L("orientation-workspace-accounts-security", 3, "Accounts, Passwords, and Security Hygiene", "Adopt a password manager, MFA, and safe habits before you start creating dev accounts."),
+        L("orientation-workspace-tools-preview", 4, "Preview of the Developer Toolchain", "Recognise the tools you will meet — terminals, editors, Python, notebooks, git, PyTorch."),
       ],
     },
     {
-      id: "orientation-path-ahead",
-      order: 4,
-      title: "The Path Ahead",
+      id: "orientation-first-ai",
+      order: 6,
+      title: "First AI-Connected Experience",
       summary:
-        "See the whole 13-stage journey, its dependencies, and what a professional AI engineer actually does day to day.",
+        "A hands-on first conversation with a modern AI system, treated with the same rigour as any other tool — probing, verifying, and reflecting.",
       lessons: [
-        {
-          id: "orientation-path-ahead-roadmap",
-          order: 1,
-          title: "The 13-Stage Roadmap",
-          outcome: "Explain the arc from computer literacy to shipping AI systems in production.",
-          effort: "30–45 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-path-ahead-what-engineers-do",
-          order: 2,
-          title: "What AI Engineers Actually Do",
-          outcome:
-            "Describe realistic AI engineering roles beyond training-huge-models stereotypes.",
-          effort: "30–45 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-path-ahead-tools-preview",
-          order: 3,
-          title: "Preview of the Toolchain",
-          outcome:
-            "Recognise the tools you will meet — terminals, editors, Python, notebooks, git, PyTorch — without needing to use them yet.",
-          effort: "30–45 min",
-          status: "planned",
-        },
-        {
-          id: "orientation-path-ahead-commit",
-          order: 4,
-          title: "Committing to the Journey",
-          outcome:
-            "Sign your own learning contract: goals, pace, and how you will hold yourself accountable.",
-          effort: "20–30 min",
-          status: "planned",
-        },
+        L("orientation-first-ai-chat-experiment", 1, "Your First Structured Chat With an AI", "Run a small guided experiment that shows what today's chat models are and are not."),
+        L("orientation-first-ai-prompting-first-look", 2, "Prompting, First Look", "Change one thing at a time in a prompt and observe how outputs change."),
+        L("orientation-first-ai-verifying-outputs", 3, "Verifying What an AI Told You", "Cross-check AI outputs against primary sources and note the failure modes you find."),
+        L("orientation-first-ai-learning-contract", 4, "Signing Your Learning Contract", "Commit to goals, pace, and how you will hold yourself accountable through 13 stages.", "20–30 min"),
       ],
     },
   ],

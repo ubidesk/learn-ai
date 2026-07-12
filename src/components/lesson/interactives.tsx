@@ -1082,7 +1082,9 @@ function LearningContract() {
   );
 }
 
-const registry: Record<InteractiveKey, ComponentType> = {
+import { computersRegistry } from "./interactives-computers";
+
+const orientationRegistry: Partial<Record<InteractiveKey, ComponentType>> = {
   "ai-family-tree": AiFamilyTree,
   "rules-vs-ml-vs-dl": RulesVsMlVsDl,
   "narrow-vs-general": NarrowVsGeneral,
@@ -1110,6 +1112,11 @@ const registry: Record<InteractiveKey, ComponentType> = {
   "prompt-delta": PromptDelta,
   "verify-the-ai": VerifyTheAi,
   "learning-contract": LearningContract,
+};
+
+const registry: Partial<Record<InteractiveKey, ComponentType>> = {
+  ...orientationRegistry,
+  ...(computersRegistry as Partial<Record<InteractiveKey, ComponentType>>),
 };
 
 export function Interactive({ component }: { component: InteractiveKey }) {

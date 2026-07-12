@@ -28,6 +28,7 @@ export interface KnowledgeCheck {
  * pass small payloads without expanding the union here.
  */
 export type InteractiveKey =
+  // Stage 1 — Orientation
   | "ai-family-tree"
   | "rules-vs-ml-vs-dl"
   | "narrow-vs-general"
@@ -54,7 +55,43 @@ export type InteractiveKey =
   | "prompt-lab"
   | "prompt-delta"
   | "verify-the-ai"
-  | "learning-contract";
+  | "learning-contract"
+  // Stage 2 — Computers, OS, Networks, Web
+  | "binary-decoder"
+  | "number-encoding"
+  | "unicode-inspector"
+  | "media-bytes"
+  | "cpu-cycle"
+  | "memory-hierarchy"
+  | "storage-picker"
+  | "io-bottleneck"
+  | "source-to-machine"
+  | "exec-modes"
+  | "process-memory-map"
+  | "concurrency-vs-parallel"
+  | "os-role"
+  | "permissions-lab"
+  | "signals-lab"
+  | "virtual-memory"
+  | "package-manager"
+  | "shell-prompt"
+  | "shell-navigator"
+  | "pipe-composer"
+  | "text-tools"
+  | "shell-script"
+  | "packet-hop"
+  | "tcp-vs-udp"
+  | "dns-resolver"
+  | "latency-ladder"
+  | "http-inspector"
+  | "tls-handshake"
+  | "url-decoder"
+  | "page-load-trace"
+  | "cloud-responsibility"
+  | "iaas-paas-saas"
+  | "region-picker"
+  | "deployment-unit"
+  | "cloud-cost";
 
 export interface Interactive {
   /** Which component to mount. */

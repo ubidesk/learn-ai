@@ -1,7 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { PageShell, Breadcrumb, StatusBadge } from "@/components/site-chrome";
 import { stages, getStageById, lessonCountFor } from "@curriculum/index";
-import { getLessonBody } from "@curriculum/lessons/index";
+import { getLessonBody, stageStatus, moduleStatus } from "@curriculum/lessons/index";
 import type { Stage } from "@curriculum/schema";
 
 export const Route = createFileRoute("/curriculum/$stageId")({
@@ -86,7 +86,7 @@ function StageDetail() {
               <span className="font-mono text-sm text-muted-foreground tabular-nums">
                 Stage {String(stage.order).padStart(2, "0")}
               </span>
-              <StatusBadge status={stage.status} />
+              <StatusBadge status={stageStatus(stage)} />
             </div>
             <h1 className="mt-3 max-w-4xl font-display text-4xl leading-[1.05] tracking-tight md:text-6xl">
               {stage.title}
@@ -171,9 +171,10 @@ function StageDetail() {
                         </p>
                       </div>
                     </div>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                    <span className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                      <StatusBadge status={moduleStatus(mod)} />
                       {mod.lessons.length} lessons
-                      <span aria-hidden="true" className="ml-3 inline-block transition-transform group-open:rotate-180">
+                      <span aria-hidden="true" className="ml-1 inline-block transition-transform group-open:rotate-180">
                         ↓
                       </span>
                     </span>
@@ -207,7 +208,7 @@ function StageDetail() {
                             <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
                               {lesson.effort}
                             </span>
-                            <StatusBadge status={hasBody ? "drafting" : lesson.status} />
+                            <StatusBadge status={hasBody ? "ready" : lesson.status} />
                           </div>
                         </div>
                       );

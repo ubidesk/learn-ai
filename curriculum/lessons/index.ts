@@ -102,3 +102,27 @@ export function availableLessons(): LessonLocation[] {
   }
   return list;
 }
+
+export type DerivedStatus = "planned" | "drafting" | "ready" | "published";
+
+/** Derived module status based on how many of its lessons have authored bodies. */
+export function moduleStatus(mod: { lessons: { id: string }[] }): DerivedStatus {
+  const total = mod.lessons.length;
+  if (total === 0) return "planned";
+  const authored = mod.lessons.filter((l) => lessonBodies[l.id] !== undefined).length;
+  if (authored === 0) return "planned";
+  if (authored === total) return "ready";
+  return "drafting";
+}
+
+/** Derived stage status aggregated across its modules' lessons. */
+export function stageStatus(stage: {
+  modules: { lessons: { id: string }[] }[];
+}): DerivedStatus {
+  const lessons = stage.modules.flatMap((m) => m.lessons);
+  if (lessons.length === 0) return "planned";
+  const authored = lessons.filter((l) => lessonBodies[l.id] !== undefined).length;
+  if (authored === 0) return "planned";
+  if (authored === lessons.length) return "ready";
+  return "drafting";
+}

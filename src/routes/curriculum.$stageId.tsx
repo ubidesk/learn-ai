@@ -94,6 +94,24 @@ function StageDetail() {
             <p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted-foreground">
               {stage.purpose}
             </p>
+            {firstAuthored && (
+              <div className="mt-6">
+                <Link
+                  to="/learn/$stageId/$moduleId/$lessonId"
+                  params={{
+                    stageId: stage.id,
+                    moduleId: firstAuthored.moduleId,
+                    lessonId: firstAuthored.lessonId,
+                  }}
+                  className="inline-flex items-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  Start learning →
+                </Link>
+                <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                  First lesson: {firstAuthored.title}
+                </p>
+              </div>
+            )}
             <dl className="mt-10 grid gap-6 md:grid-cols-3">
               <div className="rounded-lg border border-border/60 bg-card p-5">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">

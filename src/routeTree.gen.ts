@@ -16,6 +16,9 @@ import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LessonsOrientationWhatIsAiRouteImport } from './routes/lessons.orientation.what-is-ai'
+import { Route as LessonsOrientationPathAheadRouteImport } from './routes/lessons.orientation.path-ahead'
+import { Route as LessonsOrientationLandscapeRouteImport } from './routes/lessons.orientation.landscape'
+import { Route as LessonsOrientationHowToLearnRouteImport } from './routes/lessons.orientation.how-to-learn'
 
 const StartRoute = StartRouteImport.update({
   id: '/start',
@@ -53,6 +56,24 @@ const LessonsOrientationWhatIsAiRoute =
     path: '/lessons/orientation/what-is-ai',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LessonsOrientationPathAheadRoute =
+  LessonsOrientationPathAheadRouteImport.update({
+    id: '/lessons/orientation/path-ahead',
+    path: '/lessons/orientation/path-ahead',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LessonsOrientationLandscapeRoute =
+  LessonsOrientationLandscapeRouteImport.update({
+    id: '/lessons/orientation/landscape',
+    path: '/lessons/orientation/landscape',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LessonsOrientationHowToLearnRoute =
+  LessonsOrientationHowToLearnRouteImport.update({
+    id: '/lessons/orientation/how-to-learn',
+    path: '/lessons/orientation/how-to-learn',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +82,9 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
+  '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
+  '/lessons/orientation/path-ahead': typeof LessonsOrientationPathAheadRoute
   '/lessons/orientation/what-is-ai': typeof LessonsOrientationWhatIsAiRoute
 }
 export interface FileRoutesByTo {
@@ -70,6 +94,9 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
+  '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
+  '/lessons/orientation/path-ahead': typeof LessonsOrientationPathAheadRoute
   '/lessons/orientation/what-is-ai': typeof LessonsOrientationWhatIsAiRoute
 }
 export interface FileRoutesById {
@@ -80,6 +107,9 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
+  '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
+  '/lessons/orientation/path-ahead': typeof LessonsOrientationPathAheadRoute
   '/lessons/orientation/what-is-ai': typeof LessonsOrientationWhatIsAiRoute
 }
 export interface FileRouteTypes {
@@ -91,6 +121,9 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/orientation/how-to-learn'
+    | '/lessons/orientation/landscape'
+    | '/lessons/orientation/path-ahead'
     | '/lessons/orientation/what-is-ai'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -100,6 +133,9 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/orientation/how-to-learn'
+    | '/lessons/orientation/landscape'
+    | '/lessons/orientation/path-ahead'
     | '/lessons/orientation/what-is-ai'
   id:
     | '__root__'
@@ -109,6 +145,9 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/orientation/how-to-learn'
+    | '/lessons/orientation/landscape'
+    | '/lessons/orientation/path-ahead'
     | '/lessons/orientation/what-is-ai'
   fileRoutesById: FileRoutesById
 }
@@ -119,6 +158,9 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StartRoute: typeof StartRoute
+  LessonsOrientationHowToLearnRoute: typeof LessonsOrientationHowToLearnRoute
+  LessonsOrientationLandscapeRoute: typeof LessonsOrientationLandscapeRoute
+  LessonsOrientationPathAheadRoute: typeof LessonsOrientationPathAheadRoute
   LessonsOrientationWhatIsAiRoute: typeof LessonsOrientationWhatIsAiRoute
 }
 
@@ -173,6 +215,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LessonsOrientationWhatIsAiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lessons/orientation/path-ahead': {
+      id: '/lessons/orientation/path-ahead'
+      path: '/lessons/orientation/path-ahead'
+      fullPath: '/lessons/orientation/path-ahead'
+      preLoaderRoute: typeof LessonsOrientationPathAheadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lessons/orientation/landscape': {
+      id: '/lessons/orientation/landscape'
+      path: '/lessons/orientation/landscape'
+      fullPath: '/lessons/orientation/landscape'
+      preLoaderRoute: typeof LessonsOrientationLandscapeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lessons/orientation/how-to-learn': {
+      id: '/lessons/orientation/how-to-learn'
+      path: '/lessons/orientation/how-to-learn'
+      fullPath: '/lessons/orientation/how-to-learn'
+      preLoaderRoute: typeof LessonsOrientationHowToLearnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +246,9 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StartRoute: StartRoute,
+  LessonsOrientationHowToLearnRoute: LessonsOrientationHowToLearnRoute,
+  LessonsOrientationLandscapeRoute: LessonsOrientationLandscapeRoute,
+  LessonsOrientationPathAheadRoute: LessonsOrientationPathAheadRoute,
   LessonsOrientationWhatIsAiRoute: LessonsOrientationWhatIsAiRoute,
 }
 export const routeTree = rootRouteImport

@@ -331,4 +331,15 @@ export const statusLabel: Record<Status, string> = {
 // Featured lesson slugs (the ones that actually have pages today)
 export const availableLessons = [
   { stageId: "orientation", moduleId: "what-is-ai", path: "/lessons/orientation/what-is-ai" },
+  { stageId: "orientation", moduleId: "landscape", path: "/lessons/orientation/landscape" },
+  { stageId: "orientation", moduleId: "how-to-learn", path: "/lessons/orientation/how-to-learn" },
+  { stageId: "orientation", moduleId: "path-ahead", path: "/lessons/orientation/path-ahead" },
 ] as const;
+
+export function lessonPathFor(stageId: string, moduleId: string): string | null {
+  const hit = availableLessons.find(
+    (l) => l.stageId === stageId && l.moduleId === moduleId,
+  );
+  return hit ? hit.path : null;
+}
+

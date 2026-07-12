@@ -261,15 +261,15 @@ function LessonWhatIsAI() {
         <LessonSection eyebrow="Next step" title="Where we go from here.">
           <p>
             You now have the honest, jargon-free answer most people never
-            get. From here, the path is straightforward: to build systems
-            like these, you need to understand the machines they run on, then
-            learn to talk to those machines. That starts in the next stage.
+            get. Next, we zoom out from the definition to the whole field —
+            the map of categories, models, products, and roles that "AI"
+            actually contains.
           </p>
         </LessonSection>
 
         <LessonNav
           prev={{ to: "/start", label: "How the course works" }}
-          next={{ to: "/curriculum", label: "Stage 2: Understanding Computers" }}
+          next={{ to: "/lessons/orientation/landscape", label: "Lesson 2: The AI Landscape Today" }}
         />
       </main>
       <SiteFooter />

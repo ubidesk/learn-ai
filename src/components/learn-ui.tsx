@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import type { Stage, Status } from "@/lib/content";
-import { statusLabel } from "@/lib/content";
+import { lessonPathFor, statusLabel } from "@/lib/content";
+
 
 export function StatusBadge({ status }: { status: Status }) {
   const tone =
@@ -66,18 +67,44 @@ export function StageCard({ stage, compact = false }: { stage: Stage; compact?: 
               Representative modules
             </div>
             <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-              {stage.modules.map((m) => (
-                <li
-                  key={m.id}
-                  className="flex items-start gap-2 rounded-md border border-border/70 bg-background/40 px-3 py-2 text-sm"
-                >
-                  <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                  <div>
-                    <div className="font-medium">{m.title}</div>
-                    <div className="text-xs text-muted-foreground">{m.summary}</div>
-                  </div>
-                </li>
-              ))}
+              {stage.modules.map((m) => {
+                const lessonPath = lessonPathFor(stage.id, m.id);
+                const inner = (
+                  <>
+                    <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                    <div>
+                      <div className="flex items-center gap-2 font-medium">
+                        {m.title}
+                        {lessonPath && (
+                          <span className="font-mono text-[9px] uppercase tracking-widest text-accent">
+                            Open →
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-xs text-muted-foreground">{m.summary}</div>
+                    </div>
+                  </>
+                );
+                return (
+                  <li key={m.id}>
+                    {lessonPath ? (
+                      <Link
+                        to={lessonPath as unknown as never}
+                        className="flex items-start gap-2 rounded-md border border-border/70 bg-background/40 px-3 py-2 text-sm transition-colors hover:border-accent hover:bg-accent/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        {inner}
+                      </Link>
+                    ) : (
+                      <div
+                        aria-disabled="true"
+                        className="flex items-start gap-2 rounded-md border border-border/70 bg-background/40 px-3 py-2 text-sm"
+                      >
+                        {inner}
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
 

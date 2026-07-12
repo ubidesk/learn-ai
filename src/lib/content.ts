@@ -334,6 +334,10 @@ export const availableLessons = [
   { stageId: "orientation", moduleId: "landscape", path: "/lessons/orientation/landscape" },
   { stageId: "orientation", moduleId: "how-to-learn", path: "/lessons/orientation/how-to-learn" },
   { stageId: "orientation", moduleId: "path-ahead", path: "/lessons/orientation/path-ahead" },
+  { stageId: "computers", moduleId: "hardware-software", path: "/lessons/computers/hardware-software" },
+  { stageId: "computers", moduleId: "files-and-terminal", path: "/lessons/computers/files-and-terminal" },
+  { stageId: "computers", moduleId: "how-internet-works", path: "/lessons/computers/how-internet-works" },
+  { stageId: "computers", moduleId: "dev-setup", path: "/lessons/computers/dev-setup" },
 ] as const;
 
 export function lessonPathFor(stageId: string, moduleId: string): string | null {

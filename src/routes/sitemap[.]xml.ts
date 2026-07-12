@@ -23,6 +23,10 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/lessons/orientation/landscape", changefreq: "monthly", priority: "0.8" },
           { path: "/lessons/orientation/how-to-learn", changefreq: "monthly", priority: "0.8" },
           { path: "/lessons/orientation/path-ahead", changefreq: "monthly", priority: "0.8" },
+          { path: "/lessons/computers/hardware-software", changefreq: "monthly", priority: "0.8" },
+          { path: "/lessons/computers/files-and-terminal", changefreq: "monthly", priority: "0.8" },
+          { path: "/lessons/computers/how-internet-works", changefreq: "monthly", priority: "0.8" },
+          { path: "/lessons/computers/dev-setup", changefreq: "monthly", priority: "0.8" },
         ];
 
         const urls = entries.map((e) =>

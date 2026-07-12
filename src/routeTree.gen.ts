@@ -19,6 +19,10 @@ import { Route as LessonsOrientationWhatIsAiRouteImport } from './routes/lessons
 import { Route as LessonsOrientationPathAheadRouteImport } from './routes/lessons.orientation.path-ahead'
 import { Route as LessonsOrientationLandscapeRouteImport } from './routes/lessons.orientation.landscape'
 import { Route as LessonsOrientationHowToLearnRouteImport } from './routes/lessons.orientation.how-to-learn'
+import { Route as LessonsComputersHowInternetWorksRouteImport } from './routes/lessons.computers.how-internet-works'
+import { Route as LessonsComputersHardwareSoftwareRouteImport } from './routes/lessons.computers.hardware-software'
+import { Route as LessonsComputersFilesAndTerminalRouteImport } from './routes/lessons.computers.files-and-terminal'
+import { Route as LessonsComputersDevSetupRouteImport } from './routes/lessons.computers.dev-setup'
 
 const StartRoute = StartRouteImport.update({
   id: '/start',
@@ -74,6 +78,30 @@ const LessonsOrientationHowToLearnRoute =
     path: '/lessons/orientation/how-to-learn',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LessonsComputersHowInternetWorksRoute =
+  LessonsComputersHowInternetWorksRouteImport.update({
+    id: '/lessons/computers/how-internet-works',
+    path: '/lessons/computers/how-internet-works',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LessonsComputersHardwareSoftwareRoute =
+  LessonsComputersHardwareSoftwareRouteImport.update({
+    id: '/lessons/computers/hardware-software',
+    path: '/lessons/computers/hardware-software',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LessonsComputersFilesAndTerminalRoute =
+  LessonsComputersFilesAndTerminalRouteImport.update({
+    id: '/lessons/computers/files-and-terminal',
+    path: '/lessons/computers/files-and-terminal',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LessonsComputersDevSetupRoute =
+  LessonsComputersDevSetupRouteImport.update({
+    id: '/lessons/computers/dev-setup',
+    path: '/lessons/computers/dev-setup',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -82,6 +110,10 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/computers/dev-setup': typeof LessonsComputersDevSetupRoute
+  '/lessons/computers/files-and-terminal': typeof LessonsComputersFilesAndTerminalRoute
+  '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
+  '/lessons/computers/how-internet-works': typeof LessonsComputersHowInternetWorksRoute
   '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
   '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
   '/lessons/orientation/path-ahead': typeof LessonsOrientationPathAheadRoute
@@ -94,6 +126,10 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/computers/dev-setup': typeof LessonsComputersDevSetupRoute
+  '/lessons/computers/files-and-terminal': typeof LessonsComputersFilesAndTerminalRoute
+  '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
+  '/lessons/computers/how-internet-works': typeof LessonsComputersHowInternetWorksRoute
   '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
   '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
   '/lessons/orientation/path-ahead': typeof LessonsOrientationPathAheadRoute
@@ -107,6 +143,10 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/computers/dev-setup': typeof LessonsComputersDevSetupRoute
+  '/lessons/computers/files-and-terminal': typeof LessonsComputersFilesAndTerminalRoute
+  '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
+  '/lessons/computers/how-internet-works': typeof LessonsComputersHowInternetWorksRoute
   '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
   '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
   '/lessons/orientation/path-ahead': typeof LessonsOrientationPathAheadRoute
@@ -121,6 +161,10 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/computers/dev-setup'
+    | '/lessons/computers/files-and-terminal'
+    | '/lessons/computers/hardware-software'
+    | '/lessons/computers/how-internet-works'
     | '/lessons/orientation/how-to-learn'
     | '/lessons/orientation/landscape'
     | '/lessons/orientation/path-ahead'
@@ -133,6 +177,10 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/computers/dev-setup'
+    | '/lessons/computers/files-and-terminal'
+    | '/lessons/computers/hardware-software'
+    | '/lessons/computers/how-internet-works'
     | '/lessons/orientation/how-to-learn'
     | '/lessons/orientation/landscape'
     | '/lessons/orientation/path-ahead'
@@ -145,6 +193,10 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/computers/dev-setup'
+    | '/lessons/computers/files-and-terminal'
+    | '/lessons/computers/hardware-software'
+    | '/lessons/computers/how-internet-works'
     | '/lessons/orientation/how-to-learn'
     | '/lessons/orientation/landscape'
     | '/lessons/orientation/path-ahead'
@@ -158,6 +210,10 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StartRoute: typeof StartRoute
+  LessonsComputersDevSetupRoute: typeof LessonsComputersDevSetupRoute
+  LessonsComputersFilesAndTerminalRoute: typeof LessonsComputersFilesAndTerminalRoute
+  LessonsComputersHardwareSoftwareRoute: typeof LessonsComputersHardwareSoftwareRoute
+  LessonsComputersHowInternetWorksRoute: typeof LessonsComputersHowInternetWorksRoute
   LessonsOrientationHowToLearnRoute: typeof LessonsOrientationHowToLearnRoute
   LessonsOrientationLandscapeRoute: typeof LessonsOrientationLandscapeRoute
   LessonsOrientationPathAheadRoute: typeof LessonsOrientationPathAheadRoute
@@ -236,6 +292,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LessonsOrientationHowToLearnRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lessons/computers/how-internet-works': {
+      id: '/lessons/computers/how-internet-works'
+      path: '/lessons/computers/how-internet-works'
+      fullPath: '/lessons/computers/how-internet-works'
+      preLoaderRoute: typeof LessonsComputersHowInternetWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lessons/computers/hardware-software': {
+      id: '/lessons/computers/hardware-software'
+      path: '/lessons/computers/hardware-software'
+      fullPath: '/lessons/computers/hardware-software'
+      preLoaderRoute: typeof LessonsComputersHardwareSoftwareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lessons/computers/files-and-terminal': {
+      id: '/lessons/computers/files-and-terminal'
+      path: '/lessons/computers/files-and-terminal'
+      fullPath: '/lessons/computers/files-and-terminal'
+      preLoaderRoute: typeof LessonsComputersFilesAndTerminalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lessons/computers/dev-setup': {
+      id: '/lessons/computers/dev-setup'
+      path: '/lessons/computers/dev-setup'
+      fullPath: '/lessons/computers/dev-setup'
+      preLoaderRoute: typeof LessonsComputersDevSetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -246,6 +330,10 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StartRoute: StartRoute,
+  LessonsComputersDevSetupRoute: LessonsComputersDevSetupRoute,
+  LessonsComputersFilesAndTerminalRoute: LessonsComputersFilesAndTerminalRoute,
+  LessonsComputersHardwareSoftwareRoute: LessonsComputersHardwareSoftwareRoute,
+  LessonsComputersHowInternetWorksRoute: LessonsComputersHowInternetWorksRoute,
   LessonsOrientationHowToLearnRoute: LessonsOrientationHowToLearnRoute,
   LessonsOrientationLandscapeRoute: LessonsOrientationLandscapeRoute,
   LessonsOrientationPathAheadRoute: LessonsOrientationPathAheadRoute,

@@ -1,7 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { PageShell, Breadcrumb, StatusBadge } from "@/components/site-chrome";
 import { stages, getStageById, lessonCountFor } from "@curriculum/index";
-import { getLessonBody } from "@curriculum/lessons/index";
+import { getLessonBody, stageStatus, moduleStatus } from "@curriculum/lessons/index";
 import type { Stage } from "@curriculum/schema";
 
 export const Route = createFileRoute("/curriculum/$stageId")({

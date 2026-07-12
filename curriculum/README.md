@@ -1,31 +1,30 @@
 # Curriculum
 
-This directory will hold the authoritative, lesson-level Learn AI
-curriculum: **13 stages**, each an ordered sequence of lessons that
-takes a complete beginner from zero to professional AI engineering.
+The authoritative Learn AI curriculum spine, as typed TypeScript.
 
-It is intentionally empty for now. The previous prototype's compressed
-10-stage / 76-module data has been retired and will **not** be ported
-over verbatim — the new curriculum is authored fresh against the
-principles in [`../docs/learning-science.md`](../docs/learning-science.md)
-and the schema in
-[`../docs/curriculum-architecture.md`](../docs/curriculum-architecture.md).
+- Source of truth for **types**: [`schema.ts`](./schema.ts)
+- Source of truth for **stages, modules, and lessons**: files under
+  [`stages/`](./stages/), one file per stage.
+- Cross-curriculum **threads**: [`threads.ts`](./threads.ts)
+- Optional **specialisation tracks**: [`tracks.ts`](./tracks.ts)
+- **Validation** (runs at import): [`validate.ts`](./validate.ts)
+- Aggregator: [`index.ts`](./index.ts)
 
-Planned layout:
+Consumed by the app via the `@curriculum/*` path alias:
 
-```
-curriculum/
-  README.md              ← this file
-  stages/
-    01-<slug>/
-      stage.md
-      lessons/
-        01-<slug>.md
-        02-<slug>.md
-        ...
-    ...
-    13-<slug>/
+```ts
+import { stages, threads, tracks, totalLessons } from "@curriculum/index";
 ```
 
-Contributions should not be opened against this directory until the
-13-stage spine and lesson schema are ratified in `docs/`.
+## Contributing
+
+Read first:
+
+- [`../docs/curriculum-schema.md`](../docs/curriculum-schema.md) — field-by-field reference.
+- [`../docs/authoring-guide.md`](../docs/authoring-guide.md) — how to add or edit content safely.
+- [`../docs/quality-standards.md`](../docs/quality-standards.md) — the bar a lesson must clear.
+
+Every lesson today has `status: "planned"`. Full lesson bodies will be
+authored as separate content (target: Markdown lesson files under
+`stages/<slug>/lessons/`) once a stable subset of the spine has been
+reviewed. The typed spine is intentionally the first thing to stabilise.

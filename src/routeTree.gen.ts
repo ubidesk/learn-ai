@@ -9,38 +9,119 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as CurriculumRouteImport } from './routes/curriculum'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CurriculumIndexRouteImport } from './routes/curriculum.index'
+import { Route as CurriculumStageIdRouteImport } from './routes/curriculum.$stageId'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CurriculumRoute = CurriculumRouteImport.update({
+  id: '/curriculum',
+  path: '/curriculum',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CurriculumIndexRoute = CurriculumIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CurriculumRoute,
+} as any)
+const CurriculumStageIdRoute = CurriculumStageIdRouteImport.update({
+  id: '/$stageId',
+  path: '/$stageId',
+  getParentRoute: () => CurriculumRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/curriculum': typeof CurriculumRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/curriculum/$stageId': typeof CurriculumStageIdRoute
+  '/curriculum/': typeof CurriculumIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/curriculum/$stageId': typeof CurriculumStageIdRoute
+  '/curriculum': typeof CurriculumIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/curriculum': typeof CurriculumRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/curriculum/$stageId': typeof CurriculumStageIdRoute
+  '/curriculum/': typeof CurriculumIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/curriculum'
+    | '/sitemap.xml'
+    | '/curriculum/$stageId'
+    | '/curriculum/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/about' | '/sitemap.xml' | '/curriculum/$stageId' | '/curriculum'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/curriculum'
+    | '/sitemap.xml'
+    | '/curriculum/$stageId'
+    | '/curriculum/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CurriculumRoute: typeof CurriculumRouteWithChildren
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/curriculum': {
+      id: '/curriculum'
+      path: '/curriculum'
+      fullPath: '/curriculum'
+      preLoaderRoute: typeof CurriculumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +129,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/curriculum/': {
+      id: '/curriculum/'
+      path: '/'
+      fullPath: '/curriculum/'
+      preLoaderRoute: typeof CurriculumIndexRouteImport
+      parentRoute: typeof CurriculumRoute
+    }
+    '/curriculum/$stageId': {
+      id: '/curriculum/$stageId'
+      path: '/$stageId'
+      fullPath: '/curriculum/$stageId'
+      preLoaderRoute: typeof CurriculumStageIdRouteImport
+      parentRoute: typeof CurriculumRoute
+    }
   }
 }
 
+interface CurriculumRouteChildren {
+  CurriculumStageIdRoute: typeof CurriculumStageIdRoute
+  CurriculumIndexRoute: typeof CurriculumIndexRoute
+}
+
+const CurriculumRouteChildren: CurriculumRouteChildren = {
+  CurriculumStageIdRoute: CurriculumStageIdRoute,
+  CurriculumIndexRoute: CurriculumIndexRoute,
+}
+
+const CurriculumRouteWithChildren = CurriculumRoute._addFileChildren(
+  CurriculumRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CurriculumRoute: CurriculumRouteWithChildren,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

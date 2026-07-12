@@ -163,12 +163,13 @@ function Home() {
           <div className="rounded-2xl border border-border/60 bg-card p-8 md:p-12">
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">Where we are today</p>
             <h2 className="mt-3 font-display text-3xl tracking-tight md:text-4xl">
-              Stage 1 is fully authored. Twelve more to go.
+              Stages 1 and 2 are fully authored. Eleven more to go.
             </h2>
             <p className="mt-4 max-w-3xl text-muted-foreground leading-relaxed">
-              All 27 lessons in Stage 1 — Orientation, AI Literacy, and Digital Foundations — are
-              live, with interactive experiments and knowledge checks. Stages 2 through 12 exist
-              as the authoritative spine; lesson bodies are being written in the open.
+              All lessons in Stage 1 (Orientation) and Stage 2 (Computers, Operating
+              Systems, Networks, and the Web) are live — with interactive experiments,
+              knowledge checks, and reflection prompts. Stages 3 through 13 exist as
+              the authoritative spine; lesson bodies are being written in the open.
             </p>
             <div className="mt-6">
               <Link

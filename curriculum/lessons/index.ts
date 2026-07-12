@@ -5,6 +5,14 @@ import { module03 } from "./orientation/module-03-how-to-learn";
 import { module04 } from "./orientation/module-04-digital-foundations";
 import { module05 } from "./orientation/module-05-workspace";
 import { module06 } from "./orientation/module-06-first-ai";
+import { module01 as computers01 } from "./computers/module-01-information-representation";
+import { module02 as computers02 } from "./computers/module-02-hardware";
+import { module03 as computers03 } from "./computers/module-03-programs-execution";
+import { module04 as computers04 } from "./computers/module-04-os";
+import { module05 as computers05 } from "./computers/module-05-shell";
+import { module06 as computers06 } from "./computers/module-06-networking";
+import { module07 as computers07 } from "./computers/module-07-web";
+import { module08 as computers08 } from "./computers/module-08-cloud";
 import { stages } from "../index";
 
 const orientationBodies: Record<string, LessonBody> = {
@@ -16,12 +24,25 @@ const orientationBodies: Record<string, LessonBody> = {
   ...module06,
 };
 
+const computersBodies: Record<string, LessonBody> = {
+  ...computers01,
+  ...computers02,
+  ...computers03,
+  ...computers04,
+  ...computers05,
+  ...computers06,
+  ...computers07,
+  ...computers08,
+};
+
 /**
  * All authored lesson bodies keyed by canonical lesson id.
- * Stage 1 (Orientation) is complete; later stages are being authored.
+ * Stages 1 (Orientation) and 2 (Computers) are complete; later stages
+ * are being authored.
  */
 export const lessonBodies: Record<string, LessonBody> = {
   ...orientationBodies,
+  ...computersBodies,
 };
 
 export function getLessonBody(lessonId: string): LessonBody | undefined {

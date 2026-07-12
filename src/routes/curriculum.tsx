@@ -32,13 +32,31 @@ function CurriculumPage() {
           Curriculum · v0.1
         </div>
         <h1 className="mt-4 font-display text-5xl tracking-tight md:text-6xl">
-          Ten stages. One honest path.
+          {totalStages} stages. {totalModules} modules.{" "}
+          <span className="italic text-accent">One honest path.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
           From "what is a computer, really?" to shipping production AI
-          systems. Each stage builds on the last — we don't skip programming
-          or math to get to the shiny parts.
+          systems. This is the canonical Learn AI curriculum — the full
+          module list is shown even where lessons are still being written,
+          so nothing about the path ahead is hidden from you.
         </p>
+
+        <dl className="mt-8 grid max-w-xl grid-cols-3 gap-4 rounded-xl border border-border bg-card p-4 text-center">
+          <div>
+            <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Stages</dt>
+            <dd className="mt-1 font-display text-2xl font-semibold">{totalStages}</dd>
+          </div>
+          <div>
+            <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Modules</dt>
+            <dd className="mt-1 font-display text-2xl font-semibold">{totalModules}</dd>
+          </div>
+          <div>
+            <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Pillars</dt>
+            <dd className="mt-1 font-display text-2xl font-semibold">5</dd>
+          </div>
+        </dl>
+
 
         <div className="mt-14 space-y-6">
           {stages.map((s) => (

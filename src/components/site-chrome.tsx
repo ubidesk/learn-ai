@@ -72,15 +72,27 @@ export function PageShell({ children }: { children: ReactNode }) {
   );
 }
 
-export function StatusBadge({ status }: { status: "planned" | "drafting" | "published" }) {
+export function StatusBadge({
+  status,
+}: {
+  status: "planned" | "drafting" | "ready" | "published";
+}) {
   const label =
-    status === "published" ? "Published" : status === "drafting" ? "Drafting" : "Planned";
+    status === "published"
+      ? "Published"
+      : status === "ready"
+        ? "Ready"
+        : status === "drafting"
+          ? "Drafting"
+          : "Planned";
   const cls =
     status === "published"
       ? "border-highlight/40 bg-highlight/15 text-highlight-foreground"
-      : status === "drafting"
-        ? "border-accent/40 bg-accent/10 text-accent"
-        : "border-border/60 bg-muted text-muted-foreground";
+      : status === "ready"
+        ? "border-highlight/40 bg-highlight/15 text-highlight-foreground"
+        : status === "drafting"
+          ? "border-accent/40 bg-accent/10 text-accent"
+          : "border-border/60 bg-muted text-muted-foreground";
   return (
     <span
       className={`inline-flex items-center rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.15em] ${cls}`}

@@ -226,8 +226,9 @@ export function LessonNav({
       className="mt-16 grid gap-3 border-t border-border/60 pt-8 md:grid-cols-2"
     >
       {prev ? (
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         <Link
-          to={prev.to}
+          to={prev.to as unknown as never}
           className="group rounded-lg border border-border bg-card p-4 transition-colors hover:border-foreground/60"
         >
           <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
@@ -240,7 +241,7 @@ export function LessonNav({
       )}
       {next ? (
         <Link
-          to={next.to}
+          to={next.to as unknown as never}
           className="group rounded-lg border border-border bg-card p-4 text-right transition-colors hover:border-foreground/60"
         >
           <div className="font-mono text-[10px] uppercase tracking-widest text-accent">

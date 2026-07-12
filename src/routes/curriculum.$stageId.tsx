@@ -58,6 +58,16 @@ function StageDetail() {
   const { stage } = Route.useLoaderData() as { stage: Stage };
   const previous = stages.find((s) => s.order === stage.order - 1);
   const next = stages.find((s) => s.order === stage.order + 1);
+  const firstAuthored = (() => {
+    for (const mod of stage.modules) {
+      for (const lesson of mod.lessons) {
+        if (getLessonBody(lesson.id)) {
+          return { moduleId: mod.id, lessonId: lesson.id, title: lesson.title };
+        }
+      }
+    }
+    return undefined;
+  })();
 
   return (
     <PageShell>

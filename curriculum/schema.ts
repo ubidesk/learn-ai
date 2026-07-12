@@ -9,6 +9,12 @@
 
 export type Status = "planned" | "drafting" | "published";
 
+/**
+ * A lesson is the atomic unit of learning: one sitting, one dominant idea,
+ * one check for understanding, one artefact of practice.
+ */
+export type LessonKind = "lesson" | "review" | "project";
+
 export interface Lesson {
   /** Globally unique lesson id, e.g. `python-foundations-syntax-variables`. */
   id: string;
@@ -24,6 +30,12 @@ export interface Lesson {
   prerequisites?: string[];
   /** Authoring status. All lessons start as `planned`. */
   status: Status;
+  /** Optional: distinguish a concept lesson from a review or a project. */
+  kind?: LessonKind;
+  /** Optional: key concepts introduced or practised. Authoring aid. */
+  concepts?: string[];
+  /** Optional: what "understood this" looks like. Authoring aid. */
+  evidence?: string;
 }
 
 export interface Module {

@@ -1082,7 +1082,7 @@ function LearningContract() {
   );
 }
 
-const registry: Record<InteractiveKey, () => JSX.Element> = {
+const registry: Record<InteractiveKey, ComponentType> = {
   "ai-family-tree": AiFamilyTree,
   "rules-vs-ml-vs-dl": RulesVsMlVsDl,
   "narrow-vs-general": NarrowVsGeneral,

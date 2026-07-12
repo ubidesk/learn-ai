@@ -122,7 +122,7 @@ function LessonPage() {
               <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
                 {lesson.effort}
               </span>
-              <StatusBadge status={body ? "drafting" : lesson.status} />
+              <StatusBadge status={body ? "ready" : lesson.status} />
             </div>
             <h1 className="mt-3 font-display text-3xl leading-tight tracking-tight md:text-5xl">
               {lesson.title}

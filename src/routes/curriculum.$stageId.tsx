@@ -151,32 +151,61 @@ function StageDetail() {
                     </span>
                   </summary>
                   <ol className="border-t border-border/60 px-6 pb-6 pt-4">
-                    {mod.lessons.map((lesson) => (
-                      <li
-                        key={lesson.id}
-                        className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border/40 py-3 last:border-b-0"
-                      >
-                        <div className="flex items-baseline gap-4">
-                          <span className="font-mono text-xs text-muted-foreground tabular-nums">
-                            {String(stage.order).padStart(2, "0")}.
-                            {String(mod.order).padStart(2, "0")}.
-                            {String(lesson.order).padStart(2, "0")}
-                          </span>
-                          <div>
-                            <p className="text-sm font-medium text-foreground">{lesson.title}</p>
-                            <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-                              {lesson.outcome}
-                            </p>
+                    {mod.lessons.map((lesson) => {
+                      const hasBody = getLessonBody(lesson.id) !== undefined;
+                      const inner = (
+                        <div className="flex flex-wrap items-baseline justify-between gap-3 py-3">
+                          <div className="flex items-baseline gap-4">
+                            <span className="font-mono text-xs text-muted-foreground tabular-nums">
+                              {String(stage.order).padStart(2, "0")}.
+                              {String(mod.order).padStart(2, "0")}.
+                              {String(lesson.order).padStart(2, "0")}
+                            </span>
+                            <div>
+                              <p className="text-sm font-medium text-foreground">
+                                {lesson.title}
+                                {hasBody && (
+                                  <span className="ml-2 font-mono text-[10px] uppercase tracking-[0.15em] text-accent">
+                                    Open →
+                                  </span>
+                                )}
+                              </p>
+                              <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
+                                {lesson.outcome}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+                              {lesson.effort}
+                            </span>
+                            <StatusBadge status={hasBody ? "drafting" : lesson.status} />
                           </div>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
-                            {lesson.effort}
-                          </span>
-                          <StatusBadge status={lesson.status} />
-                        </div>
-                      </li>
-                    ))}
+                      );
+                      return (
+                        <li
+                          key={lesson.id}
+                          className="border-b border-border/40 last:border-b-0"
+                        >
+                          {hasBody ? (
+                            <Link
+                              to="/learn/$stageId/$moduleId/$lessonId"
+                              params={{
+                                stageId: stage.id,
+                                moduleId: mod.id,
+                                lessonId: lesson.id,
+                              }}
+                              className="block rounded-md px-1 hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            >
+                              {inner}
+                            </Link>
+                          ) : (
+                            inner
+                          )}
+                        </li>
+                      );
+                    })}
                   </ol>
                 </details>
               ))}

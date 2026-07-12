@@ -15,6 +15,7 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LessonsOrientationWhatIsAiRouteImport } from './routes/lessons.orientation.what-is-ai'
 
 const StartRoute = StartRouteImport.update({
   id: '/start',
@@ -46,6 +47,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LessonsOrientationWhatIsAiRoute =
+  LessonsOrientationWhatIsAiRouteImport.update({
+    id: '/lessons/orientation/what-is-ai',
+    path: '/lessons/orientation/what-is-ai',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/orientation/what-is-ai': typeof LessonsOrientationWhatIsAiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +70,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/orientation/what-is-ai': typeof LessonsOrientationWhatIsAiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +80,7 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/orientation/what-is-ai': typeof LessonsOrientationWhatIsAiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,8 +91,16 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/orientation/what-is-ai'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/curriculum' | '/projects' | '/sitemap.xml' | '/start'
+  to:
+    | '/'
+    | '/about'
+    | '/curriculum'
+    | '/projects'
+    | '/sitemap.xml'
+    | '/start'
+    | '/lessons/orientation/what-is-ai'
   id:
     | '__root__'
     | '/'
@@ -91,6 +109,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/orientation/what-is-ai'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -100,6 +119,7 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StartRoute: typeof StartRoute
+  LessonsOrientationWhatIsAiRoute: typeof LessonsOrientationWhatIsAiRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -146,6 +166,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lessons/orientation/what-is-ai': {
+      id: '/lessons/orientation/what-is-ai'
+      path: '/lessons/orientation/what-is-ai'
+      fullPath: '/lessons/orientation/what-is-ai'
+      preLoaderRoute: typeof LessonsOrientationWhatIsAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -156,6 +183,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StartRoute: StartRoute,
+  LessonsOrientationWhatIsAiRoute: LessonsOrientationWhatIsAiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

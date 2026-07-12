@@ -1301,6 +1301,7 @@ import { computersRegistry } from "./interactives-computers";
 const orientationRegistry: Partial<Record<InteractiveKey, ComponentType>> = {
   "ai-family-tree": AiFamilyTree,
   "rules-vs-ml-vs-dl": RulesVsMlVsDl,
+  "approach-tradeoff-lab": ApproachTradeoffLab,
   "narrow-vs-general": NarrowVsGeneral,
   "ai-history-timeline": AiHistoryTimeline,
   "hype-vs-reality": HypeVsReality,

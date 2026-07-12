@@ -87,10 +87,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "An open-source path from AI-curious to AI-capable. Learn, visualize, practice, build, reflect.",
+          "An open-source learning platform that takes you from complete beginner to professional AI builder. Free, honest, and made in public.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Learn AI — From curious to capable, in the open" },
+      { name: "twitter:description", content: "An open-source learning platform that takes you from complete beginner to professional AI builder. Free, honest, and made in public." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0891af76-b3a9-4426-ae7d-af9c7e4e699a/id-preview-9d4f88ec--9abc1ee0-dc87-4f71-9bde-ca584cf23b37.lovable.app-1783887003031.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0891af76-b3a9-4426-ae7d-af9c7e4e699a/id-preview-9d4f88ec--9abc1ee0-dc87-4f71-9bde-ca584cf23b37.lovable.app-1783887003031.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

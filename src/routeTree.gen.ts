@@ -19,6 +19,7 @@ import { Route as LessonsOrientationWhatIsAiRouteImport } from './routes/lessons
 import { Route as LessonsOrientationPathAheadRouteImport } from './routes/lessons.orientation.path-ahead'
 import { Route as LessonsOrientationLandscapeRouteImport } from './routes/lessons.orientation.landscape'
 import { Route as LessonsOrientationHowToLearnRouteImport } from './routes/lessons.orientation.how-to-learn'
+import { Route as LessonsComputersHardwareSoftwareRouteImport } from './routes/lessons.computers.hardware-software'
 
 const StartRoute = StartRouteImport.update({
   id: '/start',
@@ -74,6 +75,12 @@ const LessonsOrientationHowToLearnRoute =
     path: '/lessons/orientation/how-to-learn',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LessonsComputersHardwareSoftwareRoute =
+  LessonsComputersHardwareSoftwareRouteImport.update({
+    id: '/lessons/computers/hardware-software',
+    path: '/lessons/computers/hardware-software',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
   '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
   '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
   '/lessons/orientation/path-ahead': typeof LessonsOrientationPathAheadRoute
@@ -94,6 +102,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
   '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
   '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
   '/lessons/orientation/path-ahead': typeof LessonsOrientationPathAheadRoute
@@ -107,6 +116,7 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
   '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
   '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
   '/lessons/orientation/path-ahead': typeof LessonsOrientationPathAheadRoute
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/computers/hardware-software'
     | '/lessons/orientation/how-to-learn'
     | '/lessons/orientation/landscape'
     | '/lessons/orientation/path-ahead'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/computers/hardware-software'
     | '/lessons/orientation/how-to-learn'
     | '/lessons/orientation/landscape'
     | '/lessons/orientation/path-ahead'
@@ -145,6 +157,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/computers/hardware-software'
     | '/lessons/orientation/how-to-learn'
     | '/lessons/orientation/landscape'
     | '/lessons/orientation/path-ahead'
@@ -158,6 +171,7 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StartRoute: typeof StartRoute
+  LessonsComputersHardwareSoftwareRoute: typeof LessonsComputersHardwareSoftwareRoute
   LessonsOrientationHowToLearnRoute: typeof LessonsOrientationHowToLearnRoute
   LessonsOrientationLandscapeRoute: typeof LessonsOrientationLandscapeRoute
   LessonsOrientationPathAheadRoute: typeof LessonsOrientationPathAheadRoute
@@ -236,6 +250,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LessonsOrientationHowToLearnRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lessons/computers/hardware-software': {
+      id: '/lessons/computers/hardware-software'
+      path: '/lessons/computers/hardware-software'
+      fullPath: '/lessons/computers/hardware-software'
+      preLoaderRoute: typeof LessonsComputersHardwareSoftwareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -246,6 +267,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StartRoute: StartRoute,
+  LessonsComputersHardwareSoftwareRoute: LessonsComputersHardwareSoftwareRoute,
   LessonsOrientationHowToLearnRoute: LessonsOrientationHowToLearnRoute,
   LessonsOrientationLandscapeRoute: LessonsOrientationLandscapeRoute,
   LessonsOrientationPathAheadRoute: LessonsOrientationPathAheadRoute,

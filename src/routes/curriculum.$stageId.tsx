@@ -86,7 +86,7 @@ function StageDetail() {
               <span className="font-mono text-sm text-muted-foreground tabular-nums">
                 Stage {String(stage.order).padStart(2, "0")}
               </span>
-              <StatusBadge status={stage.status} />
+              <StatusBadge status={stageStatus(stage)} />
             </div>
             <h1 className="mt-3 max-w-4xl font-display text-4xl leading-[1.05] tracking-tight md:text-6xl">
               {stage.title}

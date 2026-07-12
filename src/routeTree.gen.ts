@@ -22,6 +22,7 @@ import { Route as LessonsOrientationHowToLearnRouteImport } from './routes/lesso
 import { Route as LessonsComputersHowInternetWorksRouteImport } from './routes/lessons.computers.how-internet-works'
 import { Route as LessonsComputersHardwareSoftwareRouteImport } from './routes/lessons.computers.hardware-software'
 import { Route as LessonsComputersFilesAndTerminalRouteImport } from './routes/lessons.computers.files-and-terminal'
+import { Route as LessonsComputersDevSetupRouteImport } from './routes/lessons.computers.dev-setup'
 
 const StartRoute = StartRouteImport.update({
   id: '/start',
@@ -95,6 +96,12 @@ const LessonsComputersFilesAndTerminalRoute =
     path: '/lessons/computers/files-and-terminal',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LessonsComputersDevSetupRoute =
+  LessonsComputersDevSetupRouteImport.update({
+    id: '/lessons/computers/dev-setup',
+    path: '/lessons/computers/dev-setup',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/computers/dev-setup': typeof LessonsComputersDevSetupRoute
   '/lessons/computers/files-and-terminal': typeof LessonsComputersFilesAndTerminalRoute
   '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
   '/lessons/computers/how-internet-works': typeof LessonsComputersHowInternetWorksRoute
@@ -118,6 +126,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/computers/dev-setup': typeof LessonsComputersDevSetupRoute
   '/lessons/computers/files-and-terminal': typeof LessonsComputersFilesAndTerminalRoute
   '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
   '/lessons/computers/how-internet-works': typeof LessonsComputersHowInternetWorksRoute
@@ -134,6 +143,7 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/computers/dev-setup': typeof LessonsComputersDevSetupRoute
   '/lessons/computers/files-and-terminal': typeof LessonsComputersFilesAndTerminalRoute
   '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
   '/lessons/computers/how-internet-works': typeof LessonsComputersHowInternetWorksRoute
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/computers/dev-setup'
     | '/lessons/computers/files-and-terminal'
     | '/lessons/computers/hardware-software'
     | '/lessons/computers/how-internet-works'
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/computers/dev-setup'
     | '/lessons/computers/files-and-terminal'
     | '/lessons/computers/hardware-software'
     | '/lessons/computers/how-internet-works'
@@ -181,6 +193,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/computers/dev-setup'
     | '/lessons/computers/files-and-terminal'
     | '/lessons/computers/hardware-software'
     | '/lessons/computers/how-internet-works'
@@ -197,6 +210,7 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StartRoute: typeof StartRoute
+  LessonsComputersDevSetupRoute: typeof LessonsComputersDevSetupRoute
   LessonsComputersFilesAndTerminalRoute: typeof LessonsComputersFilesAndTerminalRoute
   LessonsComputersHardwareSoftwareRoute: typeof LessonsComputersHardwareSoftwareRoute
   LessonsComputersHowInternetWorksRoute: typeof LessonsComputersHowInternetWorksRoute
@@ -299,6 +313,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LessonsComputersFilesAndTerminalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lessons/computers/dev-setup': {
+      id: '/lessons/computers/dev-setup'
+      path: '/lessons/computers/dev-setup'
+      fullPath: '/lessons/computers/dev-setup'
+      preLoaderRoute: typeof LessonsComputersDevSetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -309,6 +330,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StartRoute: StartRoute,
+  LessonsComputersDevSetupRoute: LessonsComputersDevSetupRoute,
   LessonsComputersFilesAndTerminalRoute: LessonsComputersFilesAndTerminalRoute,
   LessonsComputersHardwareSoftwareRoute: LessonsComputersHardwareSoftwareRoute,
   LessonsComputersHowInternetWorksRoute: LessonsComputersHowInternetWorksRoute,

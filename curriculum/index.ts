@@ -24,7 +24,7 @@ export const stages: Stage[] = [
 // Also throws at import time in dev/SSR so mistakes are visible immediately.
 const validation = validateCurriculum(stages);
 if (validation.errors.length > 0) {
-  const details = validation.errors.map((e) => `  - ${e}`).join("\n");
+  const details = validation.errors.map((e: string) => `  - ${e}`).join("\n");
   throw new Error(
     `Curriculum validation failed with ${validation.errors.length} error(s):\n${details}`,
   );

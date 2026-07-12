@@ -9,254 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as StartRouteImport } from './routes/start'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ProjectsRouteImport } from './routes/projects'
-import { Route as CurriculumRouteImport } from './routes/curriculum'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as LessonsOrientationWhatIsAiRouteImport } from './routes/lessons.orientation.what-is-ai'
-import { Route as LessonsOrientationPathAheadRouteImport } from './routes/lessons.orientation.path-ahead'
-import { Route as LessonsOrientationLandscapeRouteImport } from './routes/lessons.orientation.landscape'
-import { Route as LessonsOrientationHowToLearnRouteImport } from './routes/lessons.orientation.how-to-learn'
-import { Route as LessonsComputersHowInternetWorksRouteImport } from './routes/lessons.computers.how-internet-works'
-import { Route as LessonsComputersHardwareSoftwareRouteImport } from './routes/lessons.computers.hardware-software'
-import { Route as LessonsComputersFilesAndTerminalRouteImport } from './routes/lessons.computers.files-and-terminal'
-import { Route as LessonsComputersDevSetupRouteImport } from './routes/lessons.computers.dev-setup'
 
-const StartRoute = StartRouteImport.update({
-  id: '/start',
-  path: '/start',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProjectsRoute = ProjectsRouteImport.update({
-  id: '/projects',
-  path: '/projects',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CurriculumRoute = CurriculumRouteImport.update({
-  id: '/curriculum',
-  path: '/curriculum',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LessonsOrientationWhatIsAiRoute =
-  LessonsOrientationWhatIsAiRouteImport.update({
-    id: '/lessons/orientation/what-is-ai',
-    path: '/lessons/orientation/what-is-ai',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const LessonsOrientationPathAheadRoute =
-  LessonsOrientationPathAheadRouteImport.update({
-    id: '/lessons/orientation/path-ahead',
-    path: '/lessons/orientation/path-ahead',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const LessonsOrientationLandscapeRoute =
-  LessonsOrientationLandscapeRouteImport.update({
-    id: '/lessons/orientation/landscape',
-    path: '/lessons/orientation/landscape',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const LessonsOrientationHowToLearnRoute =
-  LessonsOrientationHowToLearnRouteImport.update({
-    id: '/lessons/orientation/how-to-learn',
-    path: '/lessons/orientation/how-to-learn',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const LessonsComputersHowInternetWorksRoute =
-  LessonsComputersHowInternetWorksRouteImport.update({
-    id: '/lessons/computers/how-internet-works',
-    path: '/lessons/computers/how-internet-works',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const LessonsComputersHardwareSoftwareRoute =
-  LessonsComputersHardwareSoftwareRouteImport.update({
-    id: '/lessons/computers/hardware-software',
-    path: '/lessons/computers/hardware-software',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const LessonsComputersFilesAndTerminalRoute =
-  LessonsComputersFilesAndTerminalRouteImport.update({
-    id: '/lessons/computers/files-and-terminal',
-    path: '/lessons/computers/files-and-terminal',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const LessonsComputersDevSetupRoute =
-  LessonsComputersDevSetupRouteImport.update({
-    id: '/lessons/computers/dev-setup',
-    path: '/lessons/computers/dev-setup',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/curriculum': typeof CurriculumRoute
-  '/projects': typeof ProjectsRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/start': typeof StartRoute
-  '/lessons/computers/dev-setup': typeof LessonsComputersDevSetupRoute
-  '/lessons/computers/files-and-terminal': typeof LessonsComputersFilesAndTerminalRoute
-  '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
-  '/lessons/computers/how-internet-works': typeof LessonsComputersHowInternetWorksRoute
-  '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
-  '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
-  '/lessons/orientation/path-ahead': typeof LessonsOrientationPathAheadRoute
-  '/lessons/orientation/what-is-ai': typeof LessonsOrientationWhatIsAiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/curriculum': typeof CurriculumRoute
-  '/projects': typeof ProjectsRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/start': typeof StartRoute
-  '/lessons/computers/dev-setup': typeof LessonsComputersDevSetupRoute
-  '/lessons/computers/files-and-terminal': typeof LessonsComputersFilesAndTerminalRoute
-  '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
-  '/lessons/computers/how-internet-works': typeof LessonsComputersHowInternetWorksRoute
-  '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
-  '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
-  '/lessons/orientation/path-ahead': typeof LessonsOrientationPathAheadRoute
-  '/lessons/orientation/what-is-ai': typeof LessonsOrientationWhatIsAiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/curriculum': typeof CurriculumRoute
-  '/projects': typeof ProjectsRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/start': typeof StartRoute
-  '/lessons/computers/dev-setup': typeof LessonsComputersDevSetupRoute
-  '/lessons/computers/files-and-terminal': typeof LessonsComputersFilesAndTerminalRoute
-  '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
-  '/lessons/computers/how-internet-works': typeof LessonsComputersHowInternetWorksRoute
-  '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
-  '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
-  '/lessons/orientation/path-ahead': typeof LessonsOrientationPathAheadRoute
-  '/lessons/orientation/what-is-ai': typeof LessonsOrientationWhatIsAiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/curriculum'
-    | '/projects'
-    | '/sitemap.xml'
-    | '/start'
-    | '/lessons/computers/dev-setup'
-    | '/lessons/computers/files-and-terminal'
-    | '/lessons/computers/hardware-software'
-    | '/lessons/computers/how-internet-works'
-    | '/lessons/orientation/how-to-learn'
-    | '/lessons/orientation/landscape'
-    | '/lessons/orientation/path-ahead'
-    | '/lessons/orientation/what-is-ai'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/curriculum'
-    | '/projects'
-    | '/sitemap.xml'
-    | '/start'
-    | '/lessons/computers/dev-setup'
-    | '/lessons/computers/files-and-terminal'
-    | '/lessons/computers/hardware-software'
-    | '/lessons/computers/how-internet-works'
-    | '/lessons/orientation/how-to-learn'
-    | '/lessons/orientation/landscape'
-    | '/lessons/orientation/path-ahead'
-    | '/lessons/orientation/what-is-ai'
-  id:
-    | '__root__'
-    | '/'
-    | '/about'
-    | '/curriculum'
-    | '/projects'
-    | '/sitemap.xml'
-    | '/start'
-    | '/lessons/computers/dev-setup'
-    | '/lessons/computers/files-and-terminal'
-    | '/lessons/computers/hardware-software'
-    | '/lessons/computers/how-internet-works'
-    | '/lessons/orientation/how-to-learn'
-    | '/lessons/orientation/landscape'
-    | '/lessons/orientation/path-ahead'
-    | '/lessons/orientation/what-is-ai'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  CurriculumRoute: typeof CurriculumRoute
-  ProjectsRoute: typeof ProjectsRoute
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  StartRoute: typeof StartRoute
-  LessonsComputersDevSetupRoute: typeof LessonsComputersDevSetupRoute
-  LessonsComputersFilesAndTerminalRoute: typeof LessonsComputersFilesAndTerminalRoute
-  LessonsComputersHardwareSoftwareRoute: typeof LessonsComputersHardwareSoftwareRoute
-  LessonsComputersHowInternetWorksRoute: typeof LessonsComputersHowInternetWorksRoute
-  LessonsOrientationHowToLearnRoute: typeof LessonsOrientationHowToLearnRoute
-  LessonsOrientationLandscapeRoute: typeof LessonsOrientationLandscapeRoute
-  LessonsOrientationPathAheadRoute: typeof LessonsOrientationPathAheadRoute
-  LessonsOrientationWhatIsAiRoute: typeof LessonsOrientationWhatIsAiRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/start': {
-      id: '/start'
-      path: '/start'
-      fullPath: '/start'
-      preLoaderRoute: typeof StartRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects': {
-      id: '/projects'
-      path: '/projects'
-      fullPath: '/projects'
-      preLoaderRoute: typeof ProjectsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/curriculum': {
-      id: '/curriculum'
-      path: '/curriculum'
-      fullPath: '/curriculum'
-      preLoaderRoute: typeof CurriculumRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -264,80 +48,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/lessons/orientation/what-is-ai': {
-      id: '/lessons/orientation/what-is-ai'
-      path: '/lessons/orientation/what-is-ai'
-      fullPath: '/lessons/orientation/what-is-ai'
-      preLoaderRoute: typeof LessonsOrientationWhatIsAiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lessons/orientation/path-ahead': {
-      id: '/lessons/orientation/path-ahead'
-      path: '/lessons/orientation/path-ahead'
-      fullPath: '/lessons/orientation/path-ahead'
-      preLoaderRoute: typeof LessonsOrientationPathAheadRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lessons/orientation/landscape': {
-      id: '/lessons/orientation/landscape'
-      path: '/lessons/orientation/landscape'
-      fullPath: '/lessons/orientation/landscape'
-      preLoaderRoute: typeof LessonsOrientationLandscapeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lessons/orientation/how-to-learn': {
-      id: '/lessons/orientation/how-to-learn'
-      path: '/lessons/orientation/how-to-learn'
-      fullPath: '/lessons/orientation/how-to-learn'
-      preLoaderRoute: typeof LessonsOrientationHowToLearnRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lessons/computers/how-internet-works': {
-      id: '/lessons/computers/how-internet-works'
-      path: '/lessons/computers/how-internet-works'
-      fullPath: '/lessons/computers/how-internet-works'
-      preLoaderRoute: typeof LessonsComputersHowInternetWorksRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lessons/computers/hardware-software': {
-      id: '/lessons/computers/hardware-software'
-      path: '/lessons/computers/hardware-software'
-      fullPath: '/lessons/computers/hardware-software'
-      preLoaderRoute: typeof LessonsComputersHardwareSoftwareRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lessons/computers/files-and-terminal': {
-      id: '/lessons/computers/files-and-terminal'
-      path: '/lessons/computers/files-and-terminal'
-      fullPath: '/lessons/computers/files-and-terminal'
-      preLoaderRoute: typeof LessonsComputersFilesAndTerminalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lessons/computers/dev-setup': {
-      id: '/lessons/computers/dev-setup'
-      path: '/lessons/computers/dev-setup'
-      fullPath: '/lessons/computers/dev-setup'
-      preLoaderRoute: typeof LessonsComputersDevSetupRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  CurriculumRoute: CurriculumRoute,
-  ProjectsRoute: ProjectsRoute,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
-  StartRoute: StartRoute,
-  LessonsComputersDevSetupRoute: LessonsComputersDevSetupRoute,
-  LessonsComputersFilesAndTerminalRoute: LessonsComputersFilesAndTerminalRoute,
-  LessonsComputersHardwareSoftwareRoute: LessonsComputersHardwareSoftwareRoute,
-  LessonsComputersHowInternetWorksRoute: LessonsComputersHowInternetWorksRoute,
-  LessonsOrientationHowToLearnRoute: LessonsOrientationHowToLearnRoute,
-  LessonsOrientationLandscapeRoute: LessonsOrientationLandscapeRoute,
-  LessonsOrientationPathAheadRoute: LessonsOrientationPathAheadRoute,
-  LessonsOrientationWhatIsAiRoute: LessonsOrientationWhatIsAiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

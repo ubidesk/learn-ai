@@ -43,10 +43,23 @@ function CurriculumOverview() {
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             The curriculum spine — every stage, module, and lesson title — is
-            authoritative and published. Full lesson bodies are being written
-            openly; every lesson currently shows a{" "}
-            <span className="font-mono text-[11px] uppercase tracking-[0.15em]">Planned</span> status until it lands.
+            authoritative and published.{" "}
+            <span className="text-foreground">Stage 1 is fully authored</span>{" "}
+            with interactive experiments; later stages are being written openly.
           </p>
+          <div className="mt-6">
+            <Link
+              to="/learn/$stageId/$moduleId/$lessonId"
+              params={{
+                stageId: "orientation",
+                moduleId: "orientation-what-ai-is",
+                lessonId: "orientation-what-ai-is-what-is-ai",
+              }}
+              className="inline-flex items-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              Start with Stage 1, Lesson 1 →
+            </Link>
+          </div>
           <dl className="mt-10 grid max-w-2xl grid-cols-3 gap-6 border-t border-border/60 pt-6">
             <div>
               <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Stages</dt>

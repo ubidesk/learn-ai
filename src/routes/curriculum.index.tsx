@@ -98,7 +98,7 @@ function CurriculumOverview() {
                         {stage.title}
                       </h3>
                     </div>
-                    <StatusBadge status={stage.status} />
+                    <StatusBadge status={stageStatus(stage)} />
                   </div>
                   <p className="mt-3 max-w-3xl text-muted-foreground leading-relaxed">
                     {stage.purpose}

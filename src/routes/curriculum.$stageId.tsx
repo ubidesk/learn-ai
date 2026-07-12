@@ -171,9 +171,10 @@ function StageDetail() {
                         </p>
                       </div>
                     </div>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                    <span className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                      <StatusBadge status={moduleStatus(mod)} />
                       {mod.lessons.length} lessons
-                      <span aria-hidden="true" className="ml-3 inline-block transition-transform group-open:rotate-180">
+                      <span aria-hidden="true" className="ml-1 inline-block transition-transform group-open:rotate-180">
                         ↓
                       </span>
                     </span>

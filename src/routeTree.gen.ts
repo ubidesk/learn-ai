@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CurriculumIndexRouteImport } from './routes/curriculum.index'
+import { Route as CurriculumStageIdRouteImport } from './routes/curriculum.$stageId'
 
 const CurriculumRoute = CurriculumRouteImport.update({
   id: '/curriculum',
@@ -28,28 +29,36 @@ const CurriculumIndexRoute = CurriculumIndexRouteImport.update({
   path: '/',
   getParentRoute: () => CurriculumRoute,
 } as any)
+const CurriculumStageIdRoute = CurriculumStageIdRouteImport.update({
+  id: '/$stageId',
+  path: '/$stageId',
+  getParentRoute: () => CurriculumRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/curriculum': typeof CurriculumRouteWithChildren
+  '/curriculum/$stageId': typeof CurriculumStageIdRoute
   '/curriculum/': typeof CurriculumIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/curriculum/$stageId': typeof CurriculumStageIdRoute
   '/curriculum': typeof CurriculumIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/curriculum': typeof CurriculumRouteWithChildren
+  '/curriculum/$stageId': typeof CurriculumStageIdRoute
   '/curriculum/': typeof CurriculumIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/curriculum' | '/curriculum/'
+  fullPaths: '/' | '/curriculum' | '/curriculum/$stageId' | '/curriculum/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/curriculum'
-  id: '__root__' | '/' | '/curriculum' | '/curriculum/'
+  to: '/' | '/curriculum/$stageId' | '/curriculum'
+  id: '__root__' | '/' | '/curriculum' | '/curriculum/$stageId' | '/curriculum/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -80,14 +89,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CurriculumIndexRouteImport
       parentRoute: typeof CurriculumRoute
     }
+    '/curriculum/$stageId': {
+      id: '/curriculum/$stageId'
+      path: '/$stageId'
+      fullPath: '/curriculum/$stageId'
+      preLoaderRoute: typeof CurriculumStageIdRouteImport
+      parentRoute: typeof CurriculumRoute
+    }
   }
 }
 
 interface CurriculumRouteChildren {
+  CurriculumStageIdRoute: typeof CurriculumStageIdRoute
   CurriculumIndexRoute: typeof CurriculumIndexRoute
 }
 
 const CurriculumRouteChildren: CurriculumRouteChildren = {
+  CurriculumStageIdRoute: CurriculumStageIdRoute,
   CurriculumIndexRoute: CurriculumIndexRoute,
 }
 

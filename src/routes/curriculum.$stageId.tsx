@@ -208,7 +208,7 @@ function StageDetail() {
                             <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
                               {lesson.effort}
                             </span>
-                            <StatusBadge status={hasBody ? "drafting" : lesson.status} />
+                            <StatusBadge status={hasBody ? "ready" : lesson.status} />
                           </div>
                         </div>
                       );

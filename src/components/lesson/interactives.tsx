@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ComponentType } from "react";
 import type { InteractiveKey } from "@curriculum/lessons/schema";
 import {
   InteractiveShell,

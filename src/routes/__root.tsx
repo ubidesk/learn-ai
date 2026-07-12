@@ -77,24 +77,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Learn AI — From curious to capable, in the open" },
+      { title: "Learn AI" },
       {
         name: "description",
         content:
-          "An open-source learning platform that takes you from complete beginner to professional AI builder. Free, honest, and made in public.",
+          "An open-source, zero-to-hero AI curriculum. Currently being rebuilt from the ground up.",
       },
-      { property: "og:title", content: "Learn AI — From curious to capable, in the open" },
-      {
-        property: "og:description",
-        content:
-          "An open-source learning platform that takes you from complete beginner to professional AI builder. Free, honest, and made in public.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Learn AI — From curious to capable, in the open" },
-      { name: "twitter:description", content: "An open-source learning platform that takes you from complete beginner to professional AI builder. Free, honest, and made in public." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0891af76-b3a9-4426-ae7d-af9c7e4e699a/id-preview-9d4f88ec--9abc1ee0-dc87-4f71-9bde-ca584cf23b37.lovable.app-1783887003031.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0891af76-b3a9-4426-ae7d-af9c7e4e699a/id-preview-9d4f88ec--9abc1ee0-dc87-4f71-9bde-ca584cf23b37.lovable.app-1783887003031.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

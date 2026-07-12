@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { StageCard } from "@/components/learn-ui";
-import { stages } from "@/lib/content";
+import { stages, totalStages, totalModules } from "@/lib/content";
 
 export const Route = createFileRoute("/curriculum")({
   head: () => ({

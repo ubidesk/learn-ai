@@ -1,9 +1,10 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { PageShell, Breadcrumb, StatusBadge } from "@/components/site-chrome";
 import { stages, getStageById, lessonCountFor } from "@curriculum/index";
+import type { Stage } from "@curriculum/schema";
 
 export const Route = createFileRoute("/curriculum/$stageId")({
-  loader: ({ params }) => {
+  loader: ({ params }): { stage: Stage } => {
     const stage = getStageById(params.stageId);
     if (!stage) throw notFound();
     return { stage };

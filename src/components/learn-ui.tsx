@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import type { Stage, Status } from "@/lib/content";
-import { lessonPathFor, statusLabel } from "@/lib/content";
+import { builtLessonsForStage, standardExitCriteria, statusLabel } from "@/lib/content";
 
 
 export function StatusBadge({ status }: { status: Status }) {
@@ -31,6 +31,8 @@ export function StatusBadge({ status }: { status: Status }) {
 }
 
 export function StageCard({ stage, compact = false }: { stage: Stage; compact?: boolean }) {
+  const built = builtLessonsForStage(stage.id);
+  const exit = stage.exitCriteria ?? standardExitCriteria;
   return (
     <article
       className="group relative flex flex-col rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/60 hover:shadow-md hover:shadow-foreground/5"
@@ -43,7 +45,7 @@ export function StageCard({ stage, compact = false }: { stage: Stage; compact?: 
           </span>
           <div>
             <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-              {stage.pacing} · {stage.level}
+              Stage {stage.number} · {stage.pacing} · {stage.level}
             </div>
             <h3
               id={`stage-${stage.id}-title`}
@@ -62,50 +64,99 @@ export function StageCard({ stage, compact = false }: { stage: Stage; compact?: 
 
       {!compact && (
         <>
-          <div className="mt-6">
-            <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-              Representative modules
-            </div>
-            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-              {stage.modules.map((m) => {
-                const lessonPath = lessonPathFor(stage.id, m.id);
-                const inner = (
-                  <>
-                    <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                    <div>
-                      <div className="flex items-center gap-2 font-medium">
-                        {m.title}
-                        {lessonPath && (
+          {built.length > 0 && (
+            <div className="mt-6 rounded-lg border border-accent/40 bg-accent/5 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="font-mono text-[10px] uppercase tracking-widest text-accent">
+                  Available learning experiences · {built.length}
+                </div>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  Built lessons
+                </span>
+              </div>
+              <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                {built.map((b) => (
+                  <li key={b.path}>
+                    <Link
+                      to={b.path as unknown as never}
+                      className="flex items-start gap-2 rounded-md border border-border/70 bg-background/60 px-3 py-2 text-sm transition-colors hover:border-accent hover:bg-accent/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                      <div>
+                        <div className="flex items-center gap-2 font-medium">
+                          {b.title}
                           <span className="font-mono text-[9px] uppercase tracking-widest text-accent">
                             Open →
                           </span>
-                        )}
+                        </div>
+                        <div className="text-xs text-muted-foreground">{b.blurb}</div>
                       </div>
-                      <div className="text-xs text-muted-foreground">{m.summary}</div>
-                    </div>
-                  </>
-                );
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3 text-xs text-muted-foreground">
+                These pages are the lessons that exist today. They introduce
+                topics from this stage but aren't yet a one-to-one match for
+                the canonical modules below.
+              </p>
+            </div>
+          )}
+
+          <div className="mt-6">
+            <div className="flex items-center justify-between gap-3">
+              <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                Canonical modules · {stage.modules.length}
+              </div>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                Source of truth
+              </span>
+            </div>
+            <ol className="mt-3 space-y-2">
+              {stage.modules.map((m) => {
+                const modStatus: Status = m.status ?? stage.status;
                 return (
                   <li key={m.id}>
-                    {lessonPath ? (
-                      <Link
-                        to={lessonPath as unknown as never}
-                        className="flex items-start gap-2 rounded-md border border-border/70 bg-background/40 px-3 py-2 text-sm transition-colors hover:border-accent hover:bg-accent/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                      >
-                        {inner}
-                      </Link>
-                    ) : (
-                      <div
-                        aria-disabled="true"
-                        className="flex items-start gap-2 rounded-md border border-border/70 bg-background/40 px-3 py-2 text-sm"
-                      >
-                        {inner}
+                    <details className="group/details rounded-md border border-border/70 bg-background/40 open:border-foreground/40">
+                      <summary className="flex cursor-pointer list-none items-start gap-3 rounded-md px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                        <span className="mt-0.5 font-mono text-[11px] tracking-widest text-accent">
+                          {m.number}
+                        </span>
+                        <span className="flex-1 font-medium">{m.title}</span>
+                        <span className="ml-auto">
+                          <StatusBadge status={modStatus} />
+                        </span>
+                        <span
+                          aria-hidden
+                          className="ml-2 select-none font-mono text-[11px] text-muted-foreground transition-transform group-open/details:rotate-90"
+                        >
+                          ›
+                        </span>
+                      </summary>
+                      <div className="border-t border-border/60 px-3 py-3 text-sm">
+                        <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                          Topics
+                        </div>
+                        <ul className="mt-1 flex flex-wrap gap-1.5">
+                          {m.topics.map((t) => (
+                            <li
+                              key={t}
+                              className="rounded-full border border-border/70 bg-secondary/40 px-2 py-0.5 text-xs text-foreground/80"
+                            >
+                              {t}
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="mt-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                          Evidence of learning
+                        </div>
+                        <p className="mt-1 text-sm text-foreground/85">{m.evidence}</p>
                       </div>
-                    )}
+                    </details>
                   </li>
                 );
               })}
-            </ul>
+            </ol>
           </div>
 
           <div className="mt-6 grid gap-4 rounded-lg border border-dashed border-border bg-background/40 p-4 md:grid-cols-2">
@@ -123,11 +174,26 @@ export function StageCard({ stage, compact = false }: { stage: Stage; compact?: 
               <p className="mt-1 text-sm leading-relaxed">{stage.outcome}</p>
             </div>
           </div>
+
+          <details className="mt-4 rounded-lg border border-border/70 bg-background/30">
+            <summary className="cursor-pointer list-none px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+              Stage exit criteria ▾
+            </summary>
+            <ul className="space-y-1.5 border-t border-border/60 px-4 py-3 text-sm text-foreground/85">
+              {exit.map((c) => (
+                <li key={c} className="flex items-start gap-2">
+                  <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span>{c}</span>
+                </li>
+              ))}
+            </ul>
+          </details>
         </>
       )}
     </article>
   );
 }
+
 
 export function LessonSection({
   eyebrow,

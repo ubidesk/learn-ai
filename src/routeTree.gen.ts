@@ -20,6 +20,7 @@ import { Route as LessonsOrientationPathAheadRouteImport } from './routes/lesson
 import { Route as LessonsOrientationLandscapeRouteImport } from './routes/lessons.orientation.landscape'
 import { Route as LessonsOrientationHowToLearnRouteImport } from './routes/lessons.orientation.how-to-learn'
 import { Route as LessonsComputersHardwareSoftwareRouteImport } from './routes/lessons.computers.hardware-software'
+import { Route as LessonsComputersFilesAndTerminalRouteImport } from './routes/lessons.computers.files-and-terminal'
 
 const StartRoute = StartRouteImport.update({
   id: '/start',
@@ -81,6 +82,12 @@ const LessonsComputersHardwareSoftwareRoute =
     path: '/lessons/computers/hardware-software',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LessonsComputersFilesAndTerminalRoute =
+  LessonsComputersFilesAndTerminalRouteImport.update({
+    id: '/lessons/computers/files-and-terminal',
+    path: '/lessons/computers/files-and-terminal',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/computers/files-and-terminal': typeof LessonsComputersFilesAndTerminalRoute
   '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
   '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
   '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
@@ -102,6 +110,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/computers/files-and-terminal': typeof LessonsComputersFilesAndTerminalRoute
   '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
   '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
   '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
@@ -116,6 +125,7 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/start': typeof StartRoute
+  '/lessons/computers/files-and-terminal': typeof LessonsComputersFilesAndTerminalRoute
   '/lessons/computers/hardware-software': typeof LessonsComputersHardwareSoftwareRoute
   '/lessons/orientation/how-to-learn': typeof LessonsOrientationHowToLearnRoute
   '/lessons/orientation/landscape': typeof LessonsOrientationLandscapeRoute
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/computers/files-and-terminal'
     | '/lessons/computers/hardware-software'
     | '/lessons/orientation/how-to-learn'
     | '/lessons/orientation/landscape'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/computers/files-and-terminal'
     | '/lessons/computers/hardware-software'
     | '/lessons/orientation/how-to-learn'
     | '/lessons/orientation/landscape'
@@ -157,6 +169,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/start'
+    | '/lessons/computers/files-and-terminal'
     | '/lessons/computers/hardware-software'
     | '/lessons/orientation/how-to-learn'
     | '/lessons/orientation/landscape'
@@ -171,6 +184,7 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StartRoute: typeof StartRoute
+  LessonsComputersFilesAndTerminalRoute: typeof LessonsComputersFilesAndTerminalRoute
   LessonsComputersHardwareSoftwareRoute: typeof LessonsComputersHardwareSoftwareRoute
   LessonsOrientationHowToLearnRoute: typeof LessonsOrientationHowToLearnRoute
   LessonsOrientationLandscapeRoute: typeof LessonsOrientationLandscapeRoute
@@ -257,6 +271,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LessonsComputersHardwareSoftwareRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lessons/computers/files-and-terminal': {
+      id: '/lessons/computers/files-and-terminal'
+      path: '/lessons/computers/files-and-terminal'
+      fullPath: '/lessons/computers/files-and-terminal'
+      preLoaderRoute: typeof LessonsComputersFilesAndTerminalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,6 +288,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StartRoute: StartRoute,
+  LessonsComputersFilesAndTerminalRoute: LessonsComputersFilesAndTerminalRoute,
   LessonsComputersHardwareSoftwareRoute: LessonsComputersHardwareSoftwareRoute,
   LessonsOrientationHowToLearnRoute: LessonsOrientationHowToLearnRoute,
   LessonsOrientationLandscapeRoute: LessonsOrientationLandscapeRoute,

@@ -316,7 +316,7 @@ function LessonPathAhead() {
 
         <LessonNav
           prev={{ to: "/lessons/orientation/how-to-learn", label: "Lesson 3: How to Learn This Well" }}
-          next={{ to: "/curriculum", label: "Stage 2: Understanding Computers" }}
+          next={{ to: "/lessons/computers/hardware-software", label: "Stage 2 · Lesson 1: Hardware, Software, and the OS" }}
         />
       </main>
       <SiteFooter />

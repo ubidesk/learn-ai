@@ -8,6 +8,7 @@ import {
   totalLessons,
   lessonCountFor,
 } from "@curriculum/index";
+import { stageStatus } from "@curriculum/lessons/index";
 
 export const Route = createFileRoute("/curriculum/")({
   head: () => ({

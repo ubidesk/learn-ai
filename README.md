@@ -6,10 +6,19 @@ Source of truth: https://github.com/ubidesk/learn-ai
 
 ## Status
 
-The **authoritative 13-stage curriculum spine** is published. Every stage,
-module, and lesson title on the site is real. Full lesson bodies are
-being authored openly — until each lesson lands, it shows a `Planned`
-status. We would rather show an honest empty shelf than fake progress.
+The **authoritative 13-stage curriculum spine** is published — **13
+stages, 122 modules, 565 lesson-level items** — reflecting the full
+Learn AI Curriculum Blueprint 2.0. Every stage, module, and lesson title
+on the site is real. Full lesson bodies are being authored openly —
+until each lesson lands, it shows a `Planned` status. We would rather
+show an honest empty shelf than fake progress.
+
+An earlier draft compressed the blueprint to 68 modules / 300 lessons.
+That draft was expanded before any lesson bodies were authored so we
+would not accidentally lock in a shrunk curriculum. See
+[`docs/curriculum-completeness.md`](./docs/curriculum-completeness.md)
+for the canonical module checklist and the ≥100-module / ≥450-lesson
+floor enforced at import time by `curriculum/validate.ts`.
 
 ## Repository layout
 

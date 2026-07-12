@@ -1,6 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { PageShell, Breadcrumb, StatusBadge } from "@/components/site-chrome";
 import { stages, getStageById, lessonCountFor } from "@curriculum/index";
+import { getLessonBody } from "@curriculum/lessons/index";
 import type { Stage } from "@curriculum/schema";
 
 export const Route = createFileRoute("/curriculum/$stageId")({
@@ -57,6 +58,16 @@ function StageDetail() {
   const { stage } = Route.useLoaderData() as { stage: Stage };
   const previous = stages.find((s) => s.order === stage.order - 1);
   const next = stages.find((s) => s.order === stage.order + 1);
+  const firstAuthored = (() => {
+    for (const mod of stage.modules) {
+      for (const lesson of mod.lessons) {
+        if (getLessonBody(lesson.id)) {
+          return { moduleId: mod.id, lessonId: lesson.id, title: lesson.title };
+        }
+      }
+    }
+    return undefined;
+  })();
 
   return (
     <PageShell>
@@ -83,6 +94,24 @@ function StageDetail() {
             <p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted-foreground">
               {stage.purpose}
             </p>
+            {firstAuthored && (
+              <div className="mt-6">
+                <Link
+                  to="/learn/$stageId/$moduleId/$lessonId"
+                  params={{
+                    stageId: stage.id,
+                    moduleId: firstAuthored.moduleId,
+                    lessonId: firstAuthored.lessonId,
+                  }}
+                  className="inline-flex items-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  Start learning →
+                </Link>
+                <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                  First lesson: {firstAuthored.title}
+                </p>
+              </div>
+            )}
             <dl className="mt-10 grid gap-6 md:grid-cols-3">
               <div className="rounded-lg border border-border/60 bg-card p-5">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
@@ -150,32 +179,61 @@ function StageDetail() {
                     </span>
                   </summary>
                   <ol className="border-t border-border/60 px-6 pb-6 pt-4">
-                    {mod.lessons.map((lesson) => (
-                      <li
-                        key={lesson.id}
-                        className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border/40 py-3 last:border-b-0"
-                      >
-                        <div className="flex items-baseline gap-4">
-                          <span className="font-mono text-xs text-muted-foreground tabular-nums">
-                            {String(stage.order).padStart(2, "0")}.
-                            {String(mod.order).padStart(2, "0")}.
-                            {String(lesson.order).padStart(2, "0")}
-                          </span>
-                          <div>
-                            <p className="text-sm font-medium text-foreground">{lesson.title}</p>
-                            <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-                              {lesson.outcome}
-                            </p>
+                    {mod.lessons.map((lesson) => {
+                      const hasBody = getLessonBody(lesson.id) !== undefined;
+                      const inner = (
+                        <div className="flex flex-wrap items-baseline justify-between gap-3 py-3">
+                          <div className="flex items-baseline gap-4">
+                            <span className="font-mono text-xs text-muted-foreground tabular-nums">
+                              {String(stage.order).padStart(2, "0")}.
+                              {String(mod.order).padStart(2, "0")}.
+                              {String(lesson.order).padStart(2, "0")}
+                            </span>
+                            <div>
+                              <p className="text-sm font-medium text-foreground">
+                                {lesson.title}
+                                {hasBody && (
+                                  <span className="ml-2 font-mono text-[10px] uppercase tracking-[0.15em] text-accent">
+                                    Open →
+                                  </span>
+                                )}
+                              </p>
+                              <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
+                                {lesson.outcome}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+                              {lesson.effort}
+                            </span>
+                            <StatusBadge status={hasBody ? "drafting" : lesson.status} />
                           </div>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
-                            {lesson.effort}
-                          </span>
-                          <StatusBadge status={lesson.status} />
-                        </div>
-                      </li>
-                    ))}
+                      );
+                      return (
+                        <li
+                          key={lesson.id}
+                          className="border-b border-border/40 last:border-b-0"
+                        >
+                          {hasBody ? (
+                            <Link
+                              to="/learn/$stageId/$moduleId/$lessonId"
+                              params={{
+                                stageId: stage.id,
+                                moduleId: mod.id,
+                                lessonId: lesson.id,
+                              }}
+                              className="block rounded-md px-1 hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            >
+                              {inner}
+                            </Link>
+                          ) : (
+                            inner
+                          )}
+                        </li>
+                      );
+                    })}
                   </ol>
                 </details>
               ))}

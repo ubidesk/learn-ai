@@ -78,8 +78,8 @@ export const module01: Record<string, LessonBody> = {
       "A deep-learning system is a stack of such formulas, arranged in layers, with millions or billions of numbers tuned together. It can capture patterns no human could enumerate by hand.",
     ],
     visual: {
-      component: "rules-vs-ml-vs-dl",
-      caption: "Three ways to tell spam from not-spam, side by side.",
+      component: "approach-tradeoff-lab",
+      caption: "Compare rules, classical ML, and deep learning across seven dimensions — then pick an approach for three real tasks.",
     },
     explanation: [
       "Rules-based: 'If subject contains WINNER or FREE MONEY, flag as spam.' Fast to build, transparent, brittle to new tricks.",
@@ -88,10 +88,10 @@ export const module01: Record<string, LessonBody> = {
       "The trade-off is a recurring theme in this curriculum: interpretability vs power. Rules are easy to inspect and hard to make smart. Deep learning is hard to inspect and can capture nearly anything — including patterns you did not intend.",
     ],
     experiment: {
-      component: "rules-vs-ml-vs-dl",
-      caption: "Predict which approach a task needs.",
+      component: "approach-tradeoff-lab",
+      caption: "Tour the trade-offs, then choose an approach for three real tasks.",
       instructions:
-        "For each task, guess whether rules, classical ML, or deep learning is the right fit. There's often more than one workable answer — read the feedback for the trade-off.",
+        "First flip between the three tabs and read how each approach differs on logic, data, interpretability, adaptability, cost, a real example, and a common failure mode. Then, in the decision task below, pick an approach for a thermostat, a credit-scoring model, and an image generator. Feedback explains the trade-off behind each choice.",
     },
     reflection: [
       "For a system that decides who gets a bank loan, which category do you think is most appropriate — and why does the answer involve more than just accuracy?",

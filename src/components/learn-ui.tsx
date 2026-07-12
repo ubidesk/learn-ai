@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import type { Stage, Status } from "@/lib/content";
-import { statusLabel } from "@/lib/content";
+import { lessonPathFor, statusLabel } from "@/lib/content";
+
 
 export function StatusBadge({ status }: { status: Status }) {
   const tone =

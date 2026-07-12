@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import { pillars, journey, featuredProjects } from "@/lib/content";
+import { StageCard } from "@/components/learn-ui";
+import { pillars, stages } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -19,36 +20,37 @@ function Home() {
               <span>Open-source · v0.1 · Made in public</span>
             </div>
             <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[1.02] tracking-tight md:text-7xl">
-              Understand AI.{" "}
-              <span className="italic text-accent">Not just use it.</span>
+              From complete beginner to{" "}
+              <span className="italic text-accent">professional AI engineer.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-              A free, open-source curriculum that takes you from{" "}
-              <em>“what even is a model?”</em> to shipping real AI systems —
-              without the jargon, hype, or gatekeeping.
+              A free, open-source curriculum that takes you all the way — from{" "}
+              <em>"what even is a computer?"</em> to shipping production AI
+              systems. No shortcuts around the fundamentals. No jargon walls.
+              No paywall, ever.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <Link
                 to="/start"
-                className="group inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/10 transition-transform hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/10 transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 Start learning — free
-                <span className="transition-transform group-hover:translate-x-1">→</span>
+                <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
               <Link
                 to="/curriculum"
-                className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-foreground"
+                className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                See the curriculum
+                See the ten stages
               </Link>
             </div>
 
             {/* Learner promise strip */}
             <div className="mt-16 grid gap-6 border-t border-border/60 pt-8 md:grid-cols-3">
               {[
-                ["Free forever", "No paywalls, no “premium tier.” Every lesson, project, and tool is open."],
+                ["Free forever", "No paywalls, no premium tier. Every lesson, project, and tool is open."],
                 ["No prerequisites", "Start with zero code, zero math. We meet you exactly where you are."],
-                ["Built in the open", "Every issue, review, and improvement lives on GitHub. Learn with us, then help us."],
+                ["No shortcuts", "AI connected from day one — but grounded in real programming and math."],
               ].map(([title, body]) => (
                 <div key={title}>
                   <div className="font-mono text-[11px] uppercase tracking-widest text-accent">
@@ -74,7 +76,7 @@ function Home() {
               </h2>
             </div>
             <p className="hidden max-w-sm text-sm text-muted-foreground md:block">
-              Reading alone doesn't stick. Every chapter cycles through the same
+              Reading alone doesn't stick. Every lesson cycles through the same
               five moves, so knowledge turns into intuition.
             </p>
           </div>
@@ -104,7 +106,7 @@ function Home() {
           </div>
         </section>
 
-        {/* JOURNEY */}
+        {/* JOURNEY — 10 stages */}
         <section className="border-y border-border/60 bg-secondary/40">
           <div className="mx-auto max-w-6xl px-6 py-24">
             <div className="flex items-end justify-between gap-6">
@@ -113,7 +115,7 @@ function Home() {
                   The journey
                 </div>
                 <h2 className="mt-2 font-display text-3xl tracking-tight md:text-4xl">
-                  From day one to shipping systems.
+                  Ten stages. From day one to shipping.
                 </h2>
               </div>
               <Link
@@ -124,29 +126,10 @@ function Home() {
               </Link>
             </div>
 
-            <ol className="mt-12 space-y-4">
-              {journey.map((s, i) => (
-                <li
-                  key={s.stage}
-                  className="group grid gap-4 rounded-lg border border-border bg-card p-6 transition-colors hover:border-foreground md:grid-cols-[auto_1fr_auto] md:items-center md:gap-8"
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="font-display text-4xl font-semibold text-accent/70">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="rounded-full bg-highlight/30 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-highlight-foreground">
-                      {s.level}
-                    </span>
-                  </div>
-                  <div>
-                    <h3 className="font-display text-xl font-semibold tracking-tight">
-                      {s.stage}
-                    </h3>
-                    <p className="mt-1 text-sm text-muted-foreground">{s.summary}</p>
-                  </div>
-                  <div className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground md:text-right">
-                    {s.weeks}
-                  </div>
+            <ol className="mt-12 grid gap-4 md:grid-cols-2">
+              {stages.map((s) => (
+                <li key={s.id}>
+                  <StageCard stage={s} compact />
                 </li>
               ))}
             </ol>
@@ -158,10 +141,10 @@ function Home() {
           <div className="flex items-end justify-between gap-6 border-b border-border/60 pb-6">
             <div>
               <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                Featured projects
+                Portfolio milestones
               </div>
               <h2 className="mt-2 font-display text-3xl tracking-tight md:text-4xl">
-                Learn by building things that actually run.
+                Every stage ends with something you built.
               </h2>
             </div>
             <Link
@@ -173,32 +156,23 @@ function Home() {
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {featuredProjects.map((p) => (
+            {stages.slice(0, 4).map((s) => (
               <article
-                key={p.slug}
+                key={s.id}
                 className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-foreground hover:shadow-lg hover:shadow-foreground/5"
               >
-                <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest">
-                  <span className="rounded-full bg-highlight/30 px-2 py-0.5 text-highlight-foreground">
-                    {p.level}
-                  </span>
-                  <span className="text-muted-foreground">· {p.time}</span>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  Stage {String(s.number).padStart(2, "0")} · {s.title.split(":")[0]}
                 </div>
-                <h3 className="mt-4 font-display text-2xl font-semibold tracking-tight">
-                  {p.title}
+                <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight">
+                  {s.project.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {p.blurb}
+                  {s.project.blurb}
                 </p>
-                <div className="mt-6 flex flex-wrap gap-2 border-t border-border/60 pt-4">
-                  {p.stack.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded-md border border-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground"
-                    >
-                      {s}
-                    </span>
-                  ))}
+                <div className="mt-6 border-t border-border/60 pt-4 text-xs text-muted-foreground">
+                  <span className="font-medium text-foreground">You'll walk away with:</span>{" "}
+                  {s.project.artifact}
                 </div>
               </article>
             ))}
@@ -218,8 +192,8 @@ function Home() {
               </p>
             </div>
             <Link
-              to="/start"
-              className="shrink-0 rounded-md bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground shadow-lg transition-transform hover:-translate-y-0.5"
+              to="/lessons/orientation/what-is-ai"
+              className="shrink-0 rounded-md bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground shadow-lg transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               Begin your first lesson →
             </Link>

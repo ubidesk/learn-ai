@@ -25,7 +25,7 @@ source_of_truth: >
 
 Learn AI's curriculum has three orthogonal spines:
 
-1. **Knowledge spine** — the 13 stages in `curriculum/stages/*`
+1. **Knowledge spine** — the 10 milestones in `curriculum/milestones/*`
    (concepts, mental models, deliberate practice).
 2. **Competency spine** — capabilities defined in
    `LEARN_AI_GRADUATE_PROFILE_AND_COMPETENCY_FRAMEWORK.md`

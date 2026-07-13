@@ -90,16 +90,22 @@ function Home() {
               Where we are today
             </p>
             <h2 className="mt-3 font-display text-3xl tracking-tight md:text-4xl">
-              New curriculum in development.
+              The blueprint is public. Lessons come next.
             </h2>
             <p className="mt-4 max-w-3xl text-muted-foreground leading-relaxed">
-              We are rebuilding the curriculum from first principles against a
-              new set of governing documents — a graduate profile, a knowledge
-              architecture, and a project roadmap. Rather than publish lessons
-              that will change under your feet, we are working in the open and
-              will surface content here only once it is ready to stand behind.
+              We have approved a new 10-milestone curriculum organized around real
+              shipped projects — from a first HTML page to a deployed, monitored
+              AI product. The full module and lesson-specification blueprint is
+              available now. Lesson bodies will land against it, in the open,
+              milestone by milestone.
             </p>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                to="/curriculum"
+                className="inline-flex items-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                Browse the blueprint
+              </Link>
               <a
                 href="https://github.com/ubidesk/learn-ai"
                 className="inline-flex items-center rounded-md border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"

@@ -283,27 +283,29 @@ Upon completing the full curriculum, a learner should be able to demonstrate the
 
 ## The learning journey
 
-The authoritative curriculum is organized as a 13-stage dependency-aware progression in [`/curriculum`](../curriculum).
+The authoritative curriculum is organized as a 10-milestone,
+project-driven progression in [`/curriculum`](../curriculum), governed
+by [`docs/curriculum/PROJECT_ROADMAP.md`](./curriculum/PROJECT_ROADMAP.md).
 
-At a conceptual level, the journey moves through these major phases:
+At a conceptual level, the journey moves through these ten milestones:
 
-1. Understanding computers and the digital world
-2. Thinking like a programmer
-3. Building software with Python
-4. Working with data
-5. Learning the mathematics needed for AI
-6. Building machine learning systems
-7. Building deep learning systems
-8. Understanding and using large language models
-9. Building retrieval and generative AI applications
-10. Building agents and tool-using systems
-11. Deploying and operating AI systems
-12. Developing professional engineering practice
-13. Integrating capabilities through portfolio capstones
+1. AI Orientation, Digital Foundations & the Web
+2. Programming Foundations with Python
+3. Professional Python & Software Craft
+4. Data Fluency: Wrangling, SQL & Visualization
+5. Applied Mathematics & Statistics for ML
+6. Classical Machine Learning
+7. Deep Learning
+8. LLMs & Applied Generative AI
+9. MLOps & Production AI Systems
+10. Capstone, Specialization & Career Launch
 
-The transition should feel gradual. Python begins as a subject of study and becomes a tool for solving larger AI problems.
+The transition should feel gradual. Python begins as a subject of study
+and becomes a tool for building larger AI systems by Milestone 4.
 
-The curriculum files—not this overview—are the source of truth for exact stage, module, and lesson names.
+The curriculum files under `curriculum/milestones/*` — not this
+overview — are the source of truth for exact milestone, module, and
+lesson-specification content.
 
 ## What makes Learn AI different
 

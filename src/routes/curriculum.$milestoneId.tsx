@@ -10,7 +10,8 @@ export const Route = createFileRoute("/curriculum/$milestoneId")({
     return { milestone: m };
   },
   head: ({ loaderData }) => {
-    if (!loaderData) {
+    const m = (loaderData as { milestone: Milestone } | undefined)?.milestone;
+    if (!m) {
       return {
         meta: [
           { title: "Milestone not found — Learn AI" },
@@ -18,7 +19,6 @@ export const Route = createFileRoute("/curriculum/$milestoneId")({
         ],
       };
     }
-    const m = loaderData.milestone;
     const title = `${m.title} — Learn AI curriculum`;
     return {
       meta: [

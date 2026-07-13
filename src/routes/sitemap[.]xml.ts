@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { milestones } from "@curriculum/index";
 
 const BASE_URL = "https://learn-ai-open-source.lovable.app";
 
@@ -16,6 +17,12 @@ export const Route = createFileRoute("/sitemap.xml")({
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/about", changefreq: "monthly", priority: "0.6" },
+          { path: "/curriculum", changefreq: "weekly", priority: "0.9" },
+          ...milestones.map((m) => ({
+            path: `/curriculum/${m.id}`,
+            changefreq: "weekly" as const,
+            priority: "0.7",
+          })),
         ];
 
         const urls = entries.map((e) =>

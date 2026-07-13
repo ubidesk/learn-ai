@@ -1,13 +1,13 @@
 import type { CurriculumStats, Milestone } from "./schema";
 import { M1 } from "./milestones/01-foundations";
-import { M2 } from "./milestones/02-python-foundations";
-import { M3 } from "./milestones/03-professional-python";
-import { M4 } from "./milestones/04-data-fluency";
-import { M5 } from "./milestones/05-math-for-ml";
+import { M2 } from "./milestones/02-python";
+import { M3 } from "./milestones/03-software-craft";
+import { M4 } from "./milestones/04-data";
+import { M5 } from "./milestones/05-math-stats";
 import { M6 } from "./milestones/06-classical-ml";
 import { M7 } from "./milestones/07-deep-learning";
-import { M8 } from "./milestones/08-llms-and-genai";
-import { M9 } from "./milestones/09-mlops-production";
+import { M8 } from "./milestones/08-llm-apps";
+import { M9 } from "./milestones/09-production-ai";
 import { M10 } from "./milestones/10-capstone";
 import { validateCurriculum } from "./validate";
 

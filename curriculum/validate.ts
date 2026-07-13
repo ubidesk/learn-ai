@@ -131,3 +131,28 @@ export function validateCurriculum(milestones: Milestone[]): void {
 
   if (issues.length) throw new CurriculumValidationError(issues);
 }
+
+// CLI: `bunx tsx curriculum/validate.ts` — validates and prints stats.
+// Guarded so bundlers/importers do not trigger the CLI branch.
+declare const require: { main?: unknown } | undefined;
+const isCLI =
+  typeof process !== "undefined" &&
+  Array.isArray(process.argv) &&
+  process.argv[1] !== undefined &&
+  /curriculum[\\/]validate\.ts$/.test(process.argv[1]);
+if (isCLI) {
+  (async () => {
+    try {
+      const mod = await import("./index");
+      const stats = mod.computeStats();
+      // eslint-disable-next-line no-console
+      console.log("Curriculum OK");
+      // eslint-disable-next-line no-console
+      console.log(JSON.stringify(stats, null, 2));
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e instanceof Error ? e.message : String(e));
+      if (typeof process !== "undefined") process.exit(1);
+    }
+  })();
+}

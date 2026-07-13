@@ -51,7 +51,7 @@ function MilestoneNotFound() {
 }
 
 function MilestonePage() {
-  const { milestone: m } = Route.useLoaderData();
+  const { milestone: m } = Route.useLoaderData() as { milestone: Milestone };
   const flagship = m.projects.find((p) => p.id === m.flagshipProjectId);
   const idx = milestones.findIndex((x) => x.id === m.id);
   const prev = idx > 0 ? milestones[idx - 1] : undefined;

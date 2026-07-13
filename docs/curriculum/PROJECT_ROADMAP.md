@@ -94,9 +94,10 @@ M9  MLOps & Production AI Systems           →  Deployed, Monitored AI Product
 M10 Capstone & Specialisation               →  Original AI Product + Case Study
 ```
 
-Total ordered projects: **68** (7 micro, 22 small, 27 medium, 12 flagship
-including 2 in the capstone milestone). Numbers are indicative and
-governed here; lesson-level counts are downstream.
+Total ordered projects: **52** across the ten milestones, sized as a
+mix of Micro, Small, Medium, and Flagship efforts. The precise size
+distribution is governed by the milestone sections below; lesson-level
+counts are downstream and are governed by `curriculum/milestones/*`.
 
 ---
 

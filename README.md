@@ -1,83 +1,74 @@
 # Learn AI
 
-An open-source, zero-to-hero AI curriculum and learning platform.
+An open-source path from complete beginner to professional AI engineer,
+being built in public.
 
-Source of truth: https://github.com/ubidesk/learn-ai
+Learn AI is one coherent curriculum that takes a learner who has never
+written code from `"what is a computer?"` to shipping, deploying, and
+maintaining real AI systems. Free forever. No paywalls, no upsells.
 
 ## Status
 
-The **authoritative 13-stage curriculum spine** is published — **13
-stages, 122 modules, 565 lesson-level items** — reflecting the full
-Learn AI Curriculum Blueprint 2.0. Every stage, module, and lesson title
-on the site is real. Full lesson bodies are being authored openly —
-until each lesson lands, it shows a `Planned` status. We would rather
-show an honest empty shelf than fake progress.
+**Curriculum v0.1 — blueprint approved, lesson bodies not yet written.**
 
-An earlier draft compressed the blueprint to 68 modules / 300 lessons.
-That draft was expanded before any lesson bodies were authored so we
-would not accidentally lock in a shrunk curriculum. See
-[`docs/curriculum-completeness.md`](./docs/curriculum-completeness.md)
-for the canonical module checklist and the ≥100-module / ≥450-lesson
-floor enforced at import time by `curriculum/validate.ts`.
+The blueprint is public and honest:
+
+- 10 sequential milestones from Digital Foundations to Capstone.
+- Every milestone is organised around **real shipped projects**, not
+  lectures.
+- Every module has a deliverable. Every lesson has one big idea, one
+  practice, one build step, and a modern-AI connection.
+- Nothing is claimed as "finished" until it actually is.
+
+Browse the live blueprint at
+[`/curriculum`](https://learn-ai-open-source.lovable.app/curriculum).
+
+## Governing documents
+
+The curriculum is governed by four canonical documents in this
+repository:
+
+- [`docs/mission-and-prd.md`](docs/mission-and-prd.md) — mission and
+  product requirements.
+- [`docs/governance/LEARN_AI_GRADUATE_PROFILE_AND_COMPETENCY_FRAMEWORK.md`](docs/governance/LEARN_AI_GRADUATE_PROFILE_AND_COMPETENCY_FRAMEWORK.md)
+  — what a graduate can do.
+- [`docs/governance/LEARN_AI_KNOWLEDGE_ARCHITECTURE.md`](docs/governance/LEARN_AI_KNOWLEDGE_ARCHITECTURE.md)
+  — the domain taxonomy.
+- [`docs/curriculum/PROJECT_ROADMAP.md`](docs/curriculum/PROJECT_ROADMAP.md)
+  — the ordered list of projects a graduate has shipped.
+
+Downstream artifacts must not contradict these documents.
 
 ## Repository layout
 
-```
-curriculum/          ← Source of truth for the 13-stage curriculum
-  schema.ts            typed shape
-  validate.ts          structural validation (runs at import)
-  index.ts             aggregator (+ helpers)
-  threads.ts           cross-curriculum threads
-  tracks.ts            optional specialisation tracks
-  stages/              one .ts file per stage (00..12)
-docs/                ← Meta-documentation
-  mission-and-prd.md
-  learning-science.md
-  curriculum-architecture.md
-  quality-standards.md
-  curriculum-schema.md
-  authoring-guide.md
-src/                 ← The public website (TanStack Start)
-  routes/
-  components/
-  styles.css
+```text
+curriculum/          ← Source of truth for the 10-milestone curriculum
+  schema.ts          ← Types
+  build.ts           ← Small helpers used by milestone files
+  validate.ts        ← Import- and build-time validation
+  index.ts           ← Aggregation + stats
+  milestones/*.ts    ← One file per milestone
+docs/                ← Governing documents
+src/                 ← Website that browses the blueprint
 ```
 
-Curriculum data is imported via the `@curriculum/*` path alias:
-
-```ts
-import { stages, threads, tracks, totalLessons } from "@curriculum/index";
-```
-
-## Local development
+## Development
 
 ```bash
 bun install
-bun run dev
+bun run dev        # local development
+bunx tsgo --noEmit # typecheck
+bun run build      # production build (also runs curriculum validation)
 ```
-
-Typecheck and production build:
-
-```bash
-bunx tsgo --noEmit
-bun run build
-```
-
-Curriculum validation runs at import time — any duplicate id,
-non-contiguous ordering, missing required field, or broken prerequisite
-reference will fail the build with a specific message.
 
 ## Contributing
 
-See:
+We welcome contributions that improve the blueprint or move it toward
+authored lessons. Please read the governing documents first; changes
+that contradict them will be sent back.
 
-- [`docs/mission-and-prd.md`](./docs/mission-and-prd.md) — why we exist.
-- [`docs/learning-science.md`](./docs/learning-science.md) — how lessons are designed.
-- [`docs/curriculum-architecture.md`](./docs/curriculum-architecture.md) — how content is organised.
-- [`docs/curriculum-schema.md`](./docs/curriculum-schema.md) — field-by-field data reference.
-- [`docs/authoring-guide.md`](./docs/authoring-guide.md) — how to add or edit a stage/module/lesson safely.
-- [`docs/quality-standards.md`](./docs/quality-standards.md) — the bar a lesson must clear before it merges.
+## Licence
 
-## License
-
-Open source. License to be finalised alongside v1 of the curriculum.
+To be finalised. This project is being built in the open with the
+intent that curriculum, code, and reasoning remain freely usable for
+learners.

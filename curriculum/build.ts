@@ -69,5 +69,6 @@ export function project(
 }
 
 export function milestone(spec: Omit<Milestone, "status"> & { status?: Milestone["status"] }): Milestone {
-  return { status: spec.status ?? "blueprint", ...spec };
+  const { status, ...rest } = spec;
+  return { ...rest, status: status ?? "blueprint" };
 }

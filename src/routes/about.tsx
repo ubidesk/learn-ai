@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, Breadcrumb } from "@/components/site-chrome";
 
 export const Route = createFileRoute("/about")({
@@ -8,7 +8,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Learn AI is an open-source curriculum and platform built to take complete beginners to professional AI engineering, in public.",
+          "Learn AI is an open-source path built to take complete beginners to professional AI engineering, in public.",
       },
       { property: "og:title", content: "About Learn AI" },
       {
@@ -52,12 +52,11 @@ function About() {
               Where we are today
             </h2>
             <p className="mt-3 leading-relaxed text-muted-foreground">
-              The <strong>13-stage curriculum spine</strong> — every stage,
-              module, and lesson title — is published and authoritative. We
-              are writing full lesson bodies now, in the open, one stage at a
-              time. Until a lesson lands, it shows a{" "}
-              <span className="font-mono text-[11px] uppercase tracking-[0.15em]">Planned</span> status.
-              We would rather show you an honest empty shelf than fake progress.
+              A new curriculum is in development. We are rebuilding against a
+              fresh set of governing documents — a graduate profile, a knowledge
+              architecture, and a project roadmap — and we would rather show
+              you an honest empty shelf than fake progress. Lessons will appear
+              here only once they are ready to stand behind.
             </p>
 
             <h2 className="mt-10 font-display text-2xl tracking-tight text-foreground">
@@ -65,21 +64,15 @@ function About() {
             </h2>
             <p className="mt-3 leading-relaxed text-muted-foreground">
               Everything is on{" "}
-              <a className="underline decoration-accent underline-offset-4 hover:text-foreground" href="https://github.com/ubidesk/learn-ai">
+              <a
+                className="underline decoration-accent underline-offset-4 hover:text-foreground"
+                href="https://github.com/ubidesk/learn-ai"
+              >
                 GitHub
               </a>
-              . Read the schema docs, open an issue, or propose a lesson
-              against the published spine.
+              . Read the governance docs, open an issue, or follow along as
+              the curriculum takes shape.
             </p>
-          </div>
-
-          <div className="mt-10">
-            <Link
-              to="/curriculum"
-              className="inline-flex items-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              Browse the curriculum
-            </Link>
           </div>
         </div>
       </section>

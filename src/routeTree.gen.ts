@@ -10,21 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as CurriculumRouteImport } from './routes/curriculum'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CurriculumIndexRouteImport } from './routes/curriculum.index'
-import { Route as CurriculumStageIdRouteImport } from './routes/curriculum.$stageId'
-import { Route as LearnStageIdModuleIdLessonIdRouteImport } from './routes/learn.$stageId.$moduleId.$lessonId'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CurriculumRoute = CurriculumRouteImport.update({
-  id: '/curriculum',
-  path: '/curriculum',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -37,85 +28,35 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CurriculumIndexRoute = CurriculumIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => CurriculumRoute,
-} as any)
-const CurriculumStageIdRoute = CurriculumStageIdRouteImport.update({
-  id: '/$stageId',
-  path: '/$stageId',
-  getParentRoute: () => CurriculumRoute,
-} as any)
-const LearnStageIdModuleIdLessonIdRoute =
-  LearnStageIdModuleIdLessonIdRouteImport.update({
-    id: '/learn/$stageId/$moduleId/$lessonId',
-    path: '/learn/$stageId/$moduleId/$lessonId',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/curriculum': typeof CurriculumRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/curriculum/$stageId': typeof CurriculumStageIdRoute
-  '/curriculum/': typeof CurriculumIndexRoute
-  '/learn/$stageId/$moduleId/$lessonId': typeof LearnStageIdModuleIdLessonIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/curriculum/$stageId': typeof CurriculumStageIdRoute
-  '/curriculum': typeof CurriculumIndexRoute
-  '/learn/$stageId/$moduleId/$lessonId': typeof LearnStageIdModuleIdLessonIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/curriculum': typeof CurriculumRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/curriculum/$stageId': typeof CurriculumStageIdRoute
-  '/curriculum/': typeof CurriculumIndexRoute
-  '/learn/$stageId/$moduleId/$lessonId': typeof LearnStageIdModuleIdLessonIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/curriculum'
-    | '/sitemap.xml'
-    | '/curriculum/$stageId'
-    | '/curriculum/'
-    | '/learn/$stageId/$moduleId/$lessonId'
+  fullPaths: '/' | '/about' | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/sitemap.xml'
-    | '/curriculum/$stageId'
-    | '/curriculum'
-    | '/learn/$stageId/$moduleId/$lessonId'
-  id:
-    | '__root__'
-    | '/'
-    | '/about'
-    | '/curriculum'
-    | '/sitemap.xml'
-    | '/curriculum/$stageId'
-    | '/curriculum/'
-    | '/learn/$stageId/$moduleId/$lessonId'
+  to: '/' | '/about' | '/sitemap.xml'
+  id: '__root__' | '/' | '/about' | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  CurriculumRoute: typeof CurriculumRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  LearnStageIdModuleIdLessonIdRoute: typeof LearnStageIdModuleIdLessonIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -125,13 +66,6 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/curriculum': {
-      id: '/curriculum'
-      path: '/curriculum'
-      fullPath: '/curriculum'
-      preLoaderRoute: typeof CurriculumRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -148,50 +82,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/curriculum/': {
-      id: '/curriculum/'
-      path: '/'
-      fullPath: '/curriculum/'
-      preLoaderRoute: typeof CurriculumIndexRouteImport
-      parentRoute: typeof CurriculumRoute
-    }
-    '/curriculum/$stageId': {
-      id: '/curriculum/$stageId'
-      path: '/$stageId'
-      fullPath: '/curriculum/$stageId'
-      preLoaderRoute: typeof CurriculumStageIdRouteImport
-      parentRoute: typeof CurriculumRoute
-    }
-    '/learn/$stageId/$moduleId/$lessonId': {
-      id: '/learn/$stageId/$moduleId/$lessonId'
-      path: '/learn/$stageId/$moduleId/$lessonId'
-      fullPath: '/learn/$stageId/$moduleId/$lessonId'
-      preLoaderRoute: typeof LearnStageIdModuleIdLessonIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
-
-interface CurriculumRouteChildren {
-  CurriculumStageIdRoute: typeof CurriculumStageIdRoute
-  CurriculumIndexRoute: typeof CurriculumIndexRoute
-}
-
-const CurriculumRouteChildren: CurriculumRouteChildren = {
-  CurriculumStageIdRoute: CurriculumStageIdRoute,
-  CurriculumIndexRoute: CurriculumIndexRoute,
-}
-
-const CurriculumRouteWithChildren = CurriculumRoute._addFileChildren(
-  CurriculumRouteChildren,
-)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  CurriculumRoute: CurriculumRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  LearnStageIdModuleIdLessonIdRoute: LearnStageIdModuleIdLessonIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

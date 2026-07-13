@@ -1,9 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageShell, Breadcrumb } from "@/components/site-chrome";
 import { getMilestone, milestones } from "@curriculum/index";
+import type { Milestone } from "@curriculum/schema";
 
 export const Route = createFileRoute("/curriculum/$milestoneId")({
-  loader: ({ params }) => {
+  loader: ({ params }): { milestone: Milestone } => {
     const m = getMilestone(params.milestoneId);
     if (!m) throw notFound();
     return { milestone: m };

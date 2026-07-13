@@ -13,6 +13,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CurriculumIndexRouteImport } from './routes/curriculum.index'
+import { Route as CurriculumMilestoneIdRouteImport } from './routes/curriculum.$milestoneId'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -34,17 +35,24 @@ const CurriculumIndexRoute = CurriculumIndexRouteImport.update({
   path: '/curriculum/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CurriculumMilestoneIdRoute = CurriculumMilestoneIdRouteImport.update({
+  id: '/curriculum/$milestoneId',
+  path: '/curriculum/$milestoneId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/curriculum/$milestoneId': typeof CurriculumMilestoneIdRoute
   '/curriculum/': typeof CurriculumIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/curriculum/$milestoneId': typeof CurriculumMilestoneIdRoute
   '/curriculum': typeof CurriculumIndexRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,38 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/curriculum/$milestoneId': typeof CurriculumMilestoneIdRoute
   '/curriculum/': typeof CurriculumIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/sitemap.xml' | '/curriculum/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/sitemap.xml'
+    | '/curriculum/$milestoneId'
+    | '/curriculum/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/sitemap.xml' | '/curriculum'
-  id: '__root__' | '/' | '/about' | '/sitemap.xml' | '/curriculum/'
+  to:
+    | '/'
+    | '/about'
+    | '/sitemap.xml'
+    | '/curriculum/$milestoneId'
+    | '/curriculum'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/sitemap.xml'
+    | '/curriculum/$milestoneId'
+    | '/curriculum/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  CurriculumMilestoneIdRoute: typeof CurriculumMilestoneIdRoute
   CurriculumIndexRoute: typeof CurriculumIndexRoute
 }
 
@@ -99,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CurriculumIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/curriculum/$milestoneId': {
+      id: '/curriculum/$milestoneId'
+      path: '/curriculum/$milestoneId'
+      fullPath: '/curriculum/$milestoneId'
+      preLoaderRoute: typeof CurriculumMilestoneIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -106,6 +139,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  CurriculumMilestoneIdRoute: CurriculumMilestoneIdRoute,
   CurriculumIndexRoute: CurriculumIndexRoute,
 }
 export const routeTree = rootRouteImport

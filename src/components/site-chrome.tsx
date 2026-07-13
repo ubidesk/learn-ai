@@ -14,6 +14,13 @@ export function SiteHeader() {
         </Link>
         <nav aria-label="Primary" className="flex items-center gap-6 text-sm">
           <Link
+            to="/curriculum"
+            className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+            activeProps={{ className: "text-foreground font-medium" }}
+          >
+            Curriculum
+          </Link>
+          <Link
             to="/about"
             className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
             activeProps={{ className: "text-foreground font-medium" }}
